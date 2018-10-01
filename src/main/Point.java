@@ -21,22 +21,10 @@ public class Point {
 		return x;
 	}	
 	/**
-	 * @param x Modifie l'abscisse du point
-	 */
-	public void setX(int x) {
-		this.x = x;
-	}
-	/**
 	 * @return Renvoie l'ordonnée du point
 	 */
 	public double getY() {
 		return y;
-	}
-	/**
-	 * @param y Modifie l'ordonné du point
-	 */
-	public void setY(int y) {
-		this.y = y;
 	}
 	/**
 	 * @return Renvoie la coordonnée en profondeur du point
@@ -44,12 +32,4 @@ public class Point {
 	public double getZ() {
 		return z;
 	}
-	/**
-	 * @param z Modifie la coordonnée en profondeur du point
-	 */
-	public void setZ(int z) {
-		this.z = z;
-	}
-	
-	
 }
