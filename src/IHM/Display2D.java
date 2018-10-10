@@ -44,6 +44,7 @@ public class Display2D extends Application{
 		//Button b2 = new Button();
 		Scene main = new Scene(root);
 		primaryStage.setScene(main);
+		primaryStage.setTitle("Dolphin");
 		primaryStage.setMinHeight(Toolkit.getDefaultToolkit().getScreenSize().getHeight()-85);
 		primaryStage.setWidth(Toolkit.getDefaultToolkit().getScreenSize().getWidth());
 		primaryStage.show();
