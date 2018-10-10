@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
+import java.util.ArrayList;
 import java.util.List;
 
 import main.Face;
@@ -15,65 +16,126 @@ import main.Segment;
  * University Of Lille
  */
 public class PlyReader {
-
-	private List<Point> points;
-	private List<Face> faces;
-	private List<Segment> segments;
+	private ArrayList<Point> points=new ArrayList<>();
+	private ArrayList<Face> faces=new ArrayList<>();
 	private int nbPoints;
 	private int nbFaces;
-
+	//"/home/infoetu/degandm/git/ProjetMode2018-M3/ressources/dolphin.ply"
 	private FileReader fr;  
 	private BufferedReader br;
 
-	public PlyReader(String path) {
+	/**
+	 * @return the points
+	 */
+	public ArrayList<Point> getPoints() {
+		return points;
+	}
+
+	/**
+	 * @return the faces
+	 */
+	public ArrayList<Face> getFaces() {
+		return faces;
+	}
+
+	public PlyReader(String path) throws IOException {
 		try {
 			fr = new FileReader(path);
-			setNbPoints();
-			setnbFaces();
-			br = new BufferedReader(fr);    
+			br = new BufferedReader(fr); 
+			lecture();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
 	}
 
-	public void setNbPoints() {
-		String res="";
-		try {
-			res=br.readLine();
-			while(!res.contains("element vertex")) {
-				res=br.readLine();
+	private void lecture() throws IOException {
+		String actu=br.readLine();
+		boolean enteteFini=false;
+		double[] tmp=new double[3];
+		while(actu!=null) {
+
+			if(actu.contains("element vertex")) {
+				nbPoints=getNumberValue(actu);
 			}
-			res=res.substring(res.lastIndexOf(" ")+1, res.length());
-			nbPoints=Integer.parseInt(res);
-		}catch(IOException e) {
-			e.printStackTrace();
-		}	
+
+			if(actu.contains("element face")) {
+				nbFaces=getNumberValue(actu);
+			}
+
+			if(actu.contains("end_header")) {
+				enteteFini=true;
+			}
+
+			if(enteteFini){
+				int tmpInt=nbPoints+nbFaces;
+				for(int i=0;i<tmpInt;i++) {
+					actu=br.readLine();
+					if(i<=nbPoints-1) {
+						tmp=getCoorPoint(actu);
+						System.out.println(tmp[0]+" "+tmp[1]+" "+tmp[2]);
+						
+						points.add(new Point(tmp[0],tmp[1],tmp[2]));
+					}else {
+						tmp=getPointFace(actu);
+						faces.add(new Face(points.get((int)tmp[0]), points.get((int)tmp[1]), points.get((int)tmp[2])));
+					}
+				}
+			}
+			actu=br.readLine();
+		}
+
 	}
 
-	public void setnbFaces() {
-		String res="";
-		try {
-			res=br.readLine();
-			while(!res.contains("element face")) {
-				res=br.readLine();
+
+	private double[] getPointFace(String actu) {
+		String tmps;
+		System.out.println(actu);
+		tmps=actu;
+		tmps=tmps.substring(2,tmps.length());
+		double res[]=new double[3];
+		int cptSpace=0;
+		int idx=0;
+		int idxBeg=0;
+		int idxEnd=0;
+		for(int i=0;i<tmps.length()&&cptSpace<2;i++) {
+			if(tmps.charAt(i)==' ') {
+				cptSpace++;
+				idxEnd=i;
+				res[idx]=Double.parseDouble(tmps.substring(idxBeg,idxEnd));
+				idxBeg=idxEnd+1;
+				idx++;
 			}
-			res=res.substring(res.lastIndexOf(" ")+1, res.length());
-			nbFaces=Integer.parseInt(res);
-		}catch(IOException e) {
-			e.printStackTrace();
-		}		
+		}
+		res[idx]=Double.parseDouble(tmps.substring(idxBeg,tmps.length()));
+		return res;
 	}
 
 
+	private double[] getCoorPoint(String actu) {
+		double res[]=new double[3];
+		int cptSpace=0;
+		int idx=0;
+		int idxBeg=0;
+		int idxEnd=0;
+		for(int i=0;i<actu.length()&&cptSpace<2;i++) {
+			if(actu.charAt(i)==' ') {
+				cptSpace++;
+				idxEnd=i;
+				res[idx]=Double.parseDouble(actu.substring(idxBeg,idxEnd));
+				idxBeg=idxEnd+1;
+				idx++;
+			}
+		}
+		res[idx]=Double.parseDouble(actu.substring(idxBeg,actu.length()));
+		return res;
+	}
 
-
-	public static void main(String[] args) throws IOException {
-		FileReader fr=new FileReader("/home/infoetu/degandm/git/ProjetMode2018-M3/ressources/dolphin.ply");   
-		BufferedReader br=new BufferedReader(fr);   
-		int i;    
-		while((i=br.read())!=-1){  
-			System.out.print((char)i);  
-		}  	
+	private int getNumberValue(String s) {
+		String res=s;
+		while(res.charAt(0)>'9'||res.charAt(0)==' '){
+			res=res.substring(1,res.length());
+		}
+		System.out.println(res);
+		return Integer.parseInt(res);
 	}
 }

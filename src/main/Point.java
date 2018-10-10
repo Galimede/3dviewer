@@ -4,6 +4,14 @@ public class Point {
 	private double x;
 	private double y;
 	private double z;
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Point [x=" + x + ", y=" + y + ", z=" + z + "]";
+	}
 	/**
 	 * @param x Coordonnee en largeur d'un point
 	 * @param y	Coordonnee en hauteur d'un point

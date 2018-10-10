@@ -1,35 +1,40 @@
 package main;
 
 public class Face {
-	private Segment seg1;
-	private Segment seg2;
-	private Segment seg3;
-	/**
-	 * @param seg1
-	 * @param seg2
-	 * @param seg3
+	private Point p1;
+	private Point p2;
+	private Point p3;
+	
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
 	 */
-	public Face(Segment seg1, Segment seg2, Segment seg3) {
-		this.seg1 = seg1;
-		this.seg2 = seg2;
-		this.seg3 = seg3;
+	@Override
+	public String toString() {
+		return "Face [p1=" + p1 + ", p2=" + p2 + ", p3=" + p3 + "]";
+	}
+	public Face(Point p1, Point p2, Point p3) {
+		this.p1 = p1;
+		this.p2 = p2;
+		this.p3 = p3;
 	}
 	/**
-	 * @return the seg1
+	 * @return the p1
 	 */
-	public Segment getSeg1() {
-		return seg1;
+	public Point getP1() {
+		return p1;
 	}
 	/**
-	 * @return the seg2
+	 * @return the p2
 	 */
-	public Segment getSeg2() {
-		return seg2;
+	public Point getP2() {
+		return p2;
 	}
 	/**
-	 * @return the seg3
+	 * @return the p3
 	 */
-	public Segment getSeg3() {
-		return seg3;
+	public Point getP3() {
+		return p3;
 	}
+
 }
