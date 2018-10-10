@@ -1,26 +1,18 @@
 package tools;
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.Reader;
 import java.util.ArrayList;
-import java.util.List;
 
 import main.Face;
 import main.Point;
-import main.Segment;
-/*
- * @author Mathieu DEGAND - 01/10/2018
- * University Of Lille
- */
+
 public class PlyReader {
 	private ArrayList<Point> points=new ArrayList<>();
 	private ArrayList<Face> faces=new ArrayList<>();
 	private int nbPoints;
 	private int nbFaces;
-	//"/home/infoetu/degandm/git/ProjetMode2018-M3/ressources/dolphin.ply"
 	private FileReader fr;  
 	private BufferedReader br;
 
