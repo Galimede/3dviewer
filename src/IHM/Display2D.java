@@ -34,14 +34,14 @@ public class Display2D extends Application{
 		}
 		Group root = new Group();
 		root.getChildren().addAll(lignes);
-		//VBox v = new VBox();
-		//Label tourner = new Label("Tourner");
-		//Button b1 = new Button();
-		//Label zoom = new Label("Zoom");
-		//Button zoomPlus = new Button();
-		//Button zoomMoins = new Button();
-		//Label translater = new Label("Translater");
-		//Button b2 = new Button();
+		VBox v = new VBox();
+		Label tourner = new Label("Tourner");
+		Button b1 = new Button();
+		Label zoom = new Label("Zoom");
+		Button zoomPlus = new Button();
+		Button zoomMoins = new Button();
+		Label translater = new Label("Translater");
+		Button b2 = new Button();
 		Scene main = new Scene(root);
 		primaryStage.setScene(main);
 		primaryStage.setTitle("Dolphin");
