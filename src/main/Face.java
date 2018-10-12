@@ -1,9 +1,13 @@
 package main;
 
+import javafx.scene.paint.Color;
+
 public class Face {
 	private Point p1;
 	private Point p2;
 	private Point p3;
+	//pour l'affichage des faces plus tard
+	private Color couleurFace;
 	
 	
 	/* (non-Javadoc)

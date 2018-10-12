@@ -50,11 +50,11 @@ public class PlyReader {
 				nbPoints=getNumberValue(actu);
 			}
 
-			if(actu.contains("element face")) {
+			else if(actu.contains("element face")) {
 				nbFaces=getNumberValue(actu);
 			}
 
-			if(actu.contains("end_header")) {
+			else if(actu.contains("end_header")) {
 				enteteFini=true;
 			}
 
