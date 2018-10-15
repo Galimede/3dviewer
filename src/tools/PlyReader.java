@@ -83,16 +83,12 @@ public class PlyReader {
 		System.out.println(actu);
 		String tmps=actu.substring(2,actu.length());
 		double res[]=new double[3];
-		int cptSpace=0;
 		int idx=0;
 		int idxBeg=0;
-		int idxEnd=0;
-		for(int i=0;i<tmps.length()&&cptSpace<2;i++) {
+		for(int i=0;i<tmps.length()&&idx<2;i++) {
 			if(tmps.charAt(i)==' ') {
-				cptSpace++;
-				idxEnd=i;
-				res[idx]=Double.parseDouble(tmps.substring(idxBeg,idxEnd));
-				idxBeg=idxEnd+1;
+				res[idx]=Double.parseDouble(tmps.substring(idxBeg,i));
+				idxBeg=i+1;
 				idx++;
 			}
 		}
@@ -106,13 +102,11 @@ public class PlyReader {
 		int cptSpace=0;
 		int idx=0;
 		int idxBeg=0;
-		int idxEnd=0;
 		for(int i=0;i<actu.length()&&cptSpace<2;i++) {
 			if(actu.charAt(i)==' ') {
 				cptSpace++;
-				idxEnd=i;
-				res[idx]=Double.parseDouble(actu.substring(idxBeg,idxEnd));
-				idxBeg=idxEnd+1;
+				res[idx]=Double.parseDouble(actu.substring(idxBeg,i));
+				idxBeg=i+1;
 				idx++;
 			}
 		}
