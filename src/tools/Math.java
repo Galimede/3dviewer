@@ -45,6 +45,16 @@ public class Math {
 		double [][]matV= {{1,0,0,vecteur[0]},{0,1,0,vecteur[1]},{0,0,1,vecteur[2]},{0,0,0,1}};
 		return multiplier(point,matV);
 	}
+	
+	public static double[][]homotetie(double [][]point,double rapport){
+		double[][]res=point;
+		double d0=0.0;
+		double[]origine= {d0,d0,d0,d0};
+		res=translation3D(point,origine);
+		double[][]matH={{rapport,d0,d0,d0},{rapport,d0,d0,d0},{rapport,d0,d0,d0},{rapport,d0,d0,d0}};
+		multiplier(res,matH);
+		return null;
+	}
 }
 
 
