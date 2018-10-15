@@ -1,18 +1,50 @@
 package tools;
 
 public class Math {
-	
-	public int [][] mulMatrice(int [][]m1,int[][]m2){
-		if(m1.length!=m2[0].length) {
-			return null;
+	public static double[][] multiplier(double[][] MA, double[][] MB){
+		double[][] MC;
+		int l, c;
+		if (MA.length * MA[0].length < MB.length * MB[0].length) {
+			l = MB.length;
+			c = MB[0].length;
+		} else {
+			l = MA.length;
+			c = MA[0].length;
 		}
-		int [][]m3=new int[m1.length][m2[0].length];
-		for(int i=0;i<m3.length;i++) {
-			for(int j=0;i<m3[0].length;j++) {
-				m3[i][j]=m1[i][j]*m2[0][0]+m1[i][j+1]*m2[i][0]+m1[2][j+2]*m2[2][0];
+		MC = new double[l][c];
+		l = 0;
+		for (int i = 0; i < MA.length; i++) {
+			c = 0;
+			for (int n = 0; n < MB[0].length; n++) {
+				double calcul = 0;
+				for (int m = 0; m < MB.length; m++) {
+					calcul += MA[i][m] * MB[m][n];
+				}
+				MC[l][c] =  (calcul/1);
+				c++;
 			}
+			l++;
 		}
-		return null;
+		return MC;
 	}
 	
+	
+	public static double[][]translation3D(double [][]point,double[]vecteur){
+		if(vecteur==null||point==null) {
+			System.out.println("L'un des deux parametres matrice ou vecteur est nul");
+			return null;
+		}
+		if(vecteur.length!=3) {
+			System.out.println("Vecteur non valide ");
+			return null;
+		}
+		if(point.length!=4||point[0].length!=4) {
+			System.out.println("Matrice non valide pour la 3D taille esperer 4x4 taille recus "+point.length+"x"+point[0].length);
+			return null;
+		}
+		double [][]matV= {{1,0,0,vecteur[0]},{0,1,0,vecteur[1]},{0,0,1,vecteur[2]},{0,0,0,1}};
+		return multiplier(point,matV);
+	}
 }
+
+
