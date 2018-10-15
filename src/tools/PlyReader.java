@@ -80,10 +80,8 @@ public class PlyReader {
 
 
 	private double[] getPointFace(String actu) {
-		String tmps;
 		System.out.println(actu);
-		tmps=actu;
-		tmps=tmps.substring(2,tmps.length());
+		String tmps=actu.substring(2,actu.length());
 		double res[]=new double[3];
 		int cptSpace=0;
 		int idx=0;
