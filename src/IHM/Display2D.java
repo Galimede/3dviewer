@@ -59,7 +59,7 @@ public class Display2D extends Application{
 	}
 	
 	public static void main(String[] args) throws IOException {
-		PlyReader pr1=new PlyReader("ressources/dolphin.ply");
+		PlyReader pr1=new PlyReader("ressources/pyramid.ply");
 		modele=new Model(pr1.getPoints(),pr1.getFaces());
 		Application.launch();
 	}
