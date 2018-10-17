@@ -1,8 +1,9 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
-public class Model {
+public class Model extends Observable{
 	private ArrayList<Point> points=new ArrayList<>();
 	private ArrayList<Face> faces=new ArrayList<>();
 	/**
@@ -30,4 +31,20 @@ public class Model {
 	public void disp() {
 		
 	}
+	/**
+	 * @param points the points to set
+	 */
+	public void setPoints(ArrayList<Point> points) {
+		this.points = points;
+	}
+	/**
+	 * @param faces the faces to set
+	 */
+	public void setFaces(ArrayList<Face> faces) {
+		this.faces = faces;
+		setChanged();
+		notifyObservers(this.faces);
+	}
+	
+	
 }
