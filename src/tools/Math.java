@@ -46,14 +46,29 @@ public class Math {
 		return multiplier(point,matV);
 	}
 	
-	public static double[][]homotetie(double [][]point,double rapport){
-		double[][]res=point;
-		double d0=0.0;
-		double[]origine= {d0,d0,d0,d0};
-		res=translation3D(point,origine);
-		double[][]matH={{rapport,d0,d0,d0},{rapport,d0,d0,d0},{rapport,d0,d0,d0},{rapport,d0,d0,d0}};
-		multiplier(res,matH);
-		return null;
+	/**
+	 *  Retourne l'homothetie 3D de rapport k autour de l'origine
+	 *  @param points
+	 *  		Matrice des points
+	 *  @param k 
+	 *  		Rapport utilisé pour l'homothetie
+	 *  @return Un tableau à deux dimensions représentant l'homothétie 3D   
+	 */
+	public static double[][] homothetie(double [][]points, double k){
+		if(points == null) {
+			System.out.println("Pas de points fournis");
+			return null;
+		}
+		double[] origine = {0,0,0};
+		points = translation3D(points,origine);
+		double[][] res = points;
+		double[][] homothetie = {  {k,0,0,0},
+							       {0,k,0,0},
+							       {0,0,k,0},
+							       {0,0,0,1}
+								};	
+		 res = multiplier(res,homothetie);
+		return res;
 	}
 }
 
