@@ -27,8 +27,8 @@ public class Math {
 		}
 		return MC;
 	}
-	
-	
+
+
 	public static double[][]translation3D(double [][]point,double[]vecteur){
 		if(vecteur==null||point==null) {
 			System.out.println("L'un des deux parametres matrice ou vecteur est nul");
@@ -45,7 +45,7 @@ public class Math {
 		double [][]matV= {{1,0,0,vecteur[0]},{0,1,0,vecteur[1]},{0,0,1,vecteur[2]},{0,0,0,1}};
 		return multiplier(point,matV);
 	}
-	
+
 	/**
 	 *  Retourne l'homothetie 3D de rapport k autour de l'origine
 	 *  @param points
@@ -63,12 +63,34 @@ public class Math {
 		points = translation3D(points,origine);
 		double[][] res = points;
 		double[][] homothetie = {  {k,0,0,0},
-							       {0,k,0,0},
-							       {0,0,k,0},
-							       {0,0,0,1}
-								};	
-		 res = multiplier(res,homothetie);
+				{0,k,0,0},
+				{0,0,k,0},
+				{0,0,0,1}
+		};	
+		res = multiplier(res,homothetie);
+		res = translation3D(res,origine);
 		return res;
+	}
+	
+	/** 
+	 * retourne la rotation autour de l'origine
+	 * @param points
+	 * 		  Matrice des points
+	 * @param angleX
+	 * 		  Angle de rotation de Y vers Z (En radians)
+	 * @param angleY
+	 * 		  Angle de rotation de Z vers X (En radians)
+	 * @param angleZ
+	 * 		  Angle de rotation de x vers Y (En radians)
+	 * @return Un tableau à deux dimensions représentant la rotation sur un axe autour de l'origine
+	 */
+	public static double[][] rotation(double [][]points, double angleX, double angleY,  double angleZ) {
+		double[][] rX = { {0} };
+		double[][] rY = { {0} };
+		double[][] rZ = { {0} };
+		double[][] rotation = multiplier(rZ, rY);
+		rotation = multiplier(rotation, rX);
+		return rotation;
 	}
 }
 
