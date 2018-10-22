@@ -17,7 +17,7 @@ public class Point {
 	 * @param z Coordonnee en profondeur d'un point
 	 */
 	public Point(double x, double y, double z) {
-		matrice[0][1]=x;
+		matrice[0][0]=x;
 		matrice[1][1]=y;
 		matrice[2][2]=z;
 	}
