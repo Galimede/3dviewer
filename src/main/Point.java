@@ -22,7 +22,7 @@ public class Point {
 		matrice[2][2]=z;
 	}
 	/**
-	 * @return Renvoie l'ordonnee du point 
+	 * @return Renvoie l'ordonnée du point 
 	 */
 	public double getX() {
 		return matrice[0][0];
