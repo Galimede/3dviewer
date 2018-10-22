@@ -7,6 +7,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -18,7 +19,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import main.Face;
 import main.Model;
-
+import tools.Math;
 public class Display2D implements Observer{
 	
 
@@ -43,9 +44,13 @@ public class Display2D implements Observer{
 		Label zoom = new Label("Zoom");
 		Button zoomPlus = new Button("+");
 		Button zoomMoins = new Button("-");
-		Button translation = new Button("Translation");
+		Button translationH = new Button("Translation haut");
+		Button translationB = new Button("Translation bas");
+		Button translationG = new Button("Translation gauche");
+		Button translationD = new Button("Translation droite");
+		translationH.setOnAction(e-> translation(e,modele));
 		h.getChildren().addAll(zoomMoins,zoomPlus);
-		v.getChildren().addAll(rotation,zoom,h,translation);
+		v.getChildren().addAll(rotation,zoom,h,translationH,translationB,translationG,translationD);
 		root.getChildren().addAll(v,canvas);
 		affichage(modele.getFaces());
 		
@@ -59,9 +64,22 @@ public class Display2D implements Observer{
 		
 	}
 	
+	private void translation(ActionEvent e, Model m) {
+		ArrayList<Face> polygon= m.getFaces();
+		double[]vecteur= {100.0,0.0,0.0};
+		for(Face f: polygon) {
+			f.getP1().setMatrice(Math.translation3D(f.getP1().getMatrice(),vecteur));
+			f.getP2().setMatrice(Math.translation3D(f.getP2().getMatrice(),vecteur));
+			f.getP3().setMatrice(Math.translation3D(f.getP3().getMatrice(),vecteur));
+		}
+		m.setFaces(polygon);
+		affichage(m.getFaces());
+	}
+
 	public void affichage (ArrayList<Face> faces){
 		gc.clearRect(0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
 		gc.setStroke(Color.BLACK);
+		gc.setFill(Color.RED);
 		int cpt=1;
 		double x=700;
 		double y= 400;
@@ -71,6 +89,9 @@ public class Display2D implements Observer{
 			gc.strokePolygon(	new double[] {f.getP1().getX()+x,f.getP2().getX()+x,f.getP3().getX()+x},
 								new double[] {f.getP1().getY()+y,f.getP2().getY()+y,f.getP3().getY()+y},
 								3);
+			gc.fillPolygon(	new double[] {f.getP1().getX()+x,f.getP2().getX()+x,f.getP3().getX()+x},
+					new double[] {f.getP1().getY()+y,f.getP2().getY()+y,f.getP3().getY()+y},
+					3);
 		}
 		
 	}
