@@ -42,6 +42,7 @@ public class Model extends Observable{
 	 */
 	public void setFaces(ArrayList<Face> faces) {
 		this.faces = faces;
+		System.out.println(""+faces.get(0).getP1().toString());
 		setChanged();
 		notifyObservers(this.faces);
 	}
