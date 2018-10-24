@@ -88,6 +88,9 @@ public class Fonctions {
 	 * @return Un tableau à deux dimensions représentant la rotation sur un axe autour de l'origine
 	 */
 	public static double[][] rotation(double [][]points, double angleX, double angleY,  double angleZ) {
+		double[] vecteurToOrigine= {-points[0][3],-points[1][3],-points[2][3]};
+		double[] vecteurToPoint= {points[0][3],points[1][3],points[2][3]};
+		points=translation3D(points,vecteurToOrigine);
 		double cosX = Math.cos(angleX);
 		double sinX = Math.sin(angleX);
 		double[][] rX = { 
@@ -96,6 +99,7 @@ public class Fonctions {
 				{0,sinX,cosX, 0},
 				{0,0,   0,    1}
 		};
+		points=multiplier(points,rX);
 		double cosY = Math.cos(angleY);
 		double sinY = Math.sin(angleY);
 		double[][] rY = { 
@@ -104,6 +108,7 @@ public class Fonctions {
 				{-sinY,0,cosY,0},
 				{0,    0,0,   1}
 		};
+		points=multiplier(points,rY);
 		double cosZ = Math.cos(angleZ);
 		double sinZ = Math.sin(angleZ);
 		double[][] rZ = { 
@@ -112,10 +117,10 @@ public class Fonctions {
 				{0,    0,    1, 0},
 				{0,    0,     0, 1}
 		};
-
+		points=multiplier(points,rZ);
 		double[][] rotation = multiplier(rZ, rY);
 		rotation = multiplier(rotation, rX);
-		return rotation;
+		return translation3D(multiplier(points,rotation),vecteurToPoint);
 	}
 }
 
