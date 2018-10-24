@@ -79,13 +79,13 @@ public class Display2D implements Observer{
 			vecteur[0]= 20.0;
 		}
 		else if(e.getSource().equals(translationG)) {
-			vecteur[0]= 20.0;
+			vecteur[0]= -20.0;
 		}
 		else if(e.getSource().equals(translationH)) {
 			vecteur[1]= -20.0;
 		}
 		else {
-			vecteur[1]= -20.0;
+			vecteur[1]= 20.0;
 		}
 		Face ftmp;
 		for(int i=0;i<polygon.size();i++) {
