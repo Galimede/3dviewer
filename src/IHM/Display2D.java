@@ -58,6 +58,7 @@ public class Display2D implements Observer{
 		translationB.setOnMousePressed(e-> translation(e,modele));
 		translationG.setOnMousePressed(e-> translation(e,modele));
 		translationD.setOnMousePressed(e-> translation(e,modele));
+		rotation.setOnMousePressed(e-> rotation(e,modele));
 		h.getChildren().addAll(zoomMoins,zoomPlus);
 		v.getChildren().addAll(rotation,zoom,h,translationH,translationB,translationG,translationD);
 		root.getChildren().addAll(v,canvas);
@@ -73,6 +74,10 @@ public class Display2D implements Observer{
 		
 	}
 	
+	private void rotation(MouseEvent e, Model modele) {
+		
+	}
+
 	private void translation(MouseEvent e, Model m) {
 		ArrayList<Face> polygon= m.getFaces();
 		double []vecteur= {0.0,0.0,0.0};
@@ -129,3 +134,4 @@ public class Display2D implements Observer{
 	}
 
 }
+
