@@ -25,6 +25,10 @@ public class Display2D implements Observer{
 	
 
 	GraphicsContext gc;
+	Button translationH;
+	Button translationB;
+	Button translationG;
+	Button translationD;
 
 
 	public Display2D(Model modele) {
@@ -45,11 +49,14 @@ public class Display2D implements Observer{
 		Label zoom = new Label("Zoom");
 		Button zoomPlus = new Button("+");
 		Button zoomMoins = new Button("-");
-		Button translationH = new Button("Translation haut");
-		Button translationB = new Button("Translation bas");
-		Button translationG = new Button("Translation gauche");
-		Button translationD = new Button("Translation droite");
+		translationH = new Button("Translation haut");
+		translationB = new Button("Translation bas");
+		translationG = new Button("Translation gauche");
+		translationD = new Button("Translation droite");
 		translationH.setOnAction(e-> translation(e,modele));
+		translationB.setOnAction(e-> translation(e,modele));
+		translationG.setOnAction(e-> translation(e,modele));
+		translationD.setOnAction(e-> translation(e,modele));
 		h.getChildren().addAll(zoomMoins,zoomPlus);
 		v.getChildren().addAll(rotation,zoom,h,translationH,translationB,translationG,translationD);
 		root.getChildren().addAll(v,canvas);
@@ -67,7 +74,19 @@ public class Display2D implements Observer{
 	
 	private void translation(ActionEvent e, Model m) {
 		ArrayList<Face> polygon= m.getFaces();
-		double[]vecteur= {100.0,0.0,0.0};
+		double []vecteur= {0.0,0.0,0.0};
+		if(e.getSource().equals(translationD)) {
+			vecteur[0]= 20.0;
+		}
+		else if(e.getSource().equals(translationG)) {
+			vecteur[0]= -20.0;
+		}
+		else if(e.getSource().equals(translationH)) {
+			vecteur[1]= 20.0;
+		}
+		else {
+			vecteur[1]= -20.0;
+		}
 		for(Face f: polygon) {	
 			f.getP1().setMatrice(Fonctions.translation3D(f.getP1().getMatrice(),vecteur));
 			f.getP2().setMatrice(Fonctions.translation3D(f.getP2().getMatrice(),vecteur));
@@ -85,7 +104,7 @@ public class Display2D implements Observer{
 		double x=700;
 		double y= 400;
 		for (Face f : faces) {
-		//	System.out.println("polygon"+ cpt+ "  "+(f.getP1().getX()+x));
+		//System.out.println("polygon"+ cpt+ "  "+(f.getP1().getX()+x));
 			cpt++;
 			gc.strokePolygon(	new double[] {f.getP1().getX()+x,f.getP2().getX()+x,f.getP3().getX()+x},
 								new double[] {f.getP1().getY()+y,f.getP2().getY()+y,f.getP3().getY()+y},
