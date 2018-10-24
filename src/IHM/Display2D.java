@@ -13,6 +13,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -53,10 +54,10 @@ public class Display2D implements Observer{
 		translationB = new Button("Translation bas");
 		translationG = new Button("Translation gauche");
 		translationD = new Button("Translation droite");
-		translationH.setOnAction(e-> translation(e,modele));
-		translationB.setOnAction(e-> translation(e,modele));
-		translationG.setOnAction(e-> translation(e,modele));
-		translationD.setOnAction(e-> translation(e,modele));
+		translationH.setOnMousePressed(e-> translation(e,modele));
+		translationB.setOnMousePressed(e-> translation(e,modele));
+		translationG.setOnMousePressed(e-> translation(e,modele));
+		translationD.setOnMousePressed(e-> translation(e,modele));
 		h.getChildren().addAll(zoomMoins,zoomPlus);
 		v.getChildren().addAll(rotation,zoom,h,translationH,translationB,translationG,translationD);
 		root.getChildren().addAll(v,canvas);
@@ -72,7 +73,7 @@ public class Display2D implements Observer{
 		
 	}
 	
-	private void translation(ActionEvent e, Model m) {
+	private void translation(MouseEvent e, Model m) {
 		ArrayList<Face> polygon= m.getFaces();
 		double []vecteur= {0.0,0.0,0.0};
 		if(e.getSource().equals(translationD)) {
@@ -82,18 +83,19 @@ public class Display2D implements Observer{
 			vecteur[0]= -20.0;
 		}
 		else if(e.getSource().equals(translationH)) {
-			vecteur[1]= 20.0;
-		}
-		else {
 			vecteur[1]= -20.0;
 		}
-		for(Face f: polygon) {	
-			f.getP1().setMatrice(Fonctions.translation3D(f.getP1().getMatrice(),vecteur));
-			f.getP2().setMatrice(Fonctions.translation3D(f.getP2().getMatrice(),vecteur));
-			f.getP3().setMatrice(Fonctions.translation3D(f.getP3().getMatrice(),vecteur));
+		else {
+			vecteur[1]= 20.0;
+		}
+		Face ftmp;
+		for(int i=0;i<polygon.size();i++) {
+			ftmp=new Face(	new Point(Fonctions.translation3D(polygon.get(i).getP1().getMatrice(),vecteur)),
+							new Point(Fonctions.translation3D(polygon.get(i).getP2().getMatrice(),vecteur)),
+							new Point(Fonctions.translation3D(polygon.get(i).getP3().getMatrice(),vecteur)));
+			polygon.set(i,ftmp);
 		}
 		m.setFaces(polygon);
-		affichage(m.getFaces());
 	}
 
 	public void affichage (ArrayList<Face> faces){
@@ -104,7 +106,9 @@ public class Display2D implements Observer{
 		double x=700;
 		double y= 400;
 		for (Face f : faces) {
-		//System.out.println("polygon"+ cpt+ "  "+(f.getP1().getX()+x) );
+		if(cpt==1) {
+			System.out.println("polygon"+ cpt+" "+f.getP1().toString());
+		}
 			cpt++;
 			gc.strokePolygon(	new double[] {f.getP1().getX()+x,f.getP2().getX()+x,f.getP3().getX()+x},
 								new double[] {f.getP1().getY()+y,f.getP2().getY()+y,f.getP3().getY()+y},
@@ -118,7 +122,9 @@ public class Display2D implements Observer{
 
 	@Override
 	public void update(Observable o, Object arg) {
-		affichage((ArrayList<Face>)arg);
+		ArrayList<Face> arg2 = (ArrayList<Face>)arg;
+		System.out.println(" "+arg2.get(0).getP1().toString());
+		affichage(arg2);
 		
 	}
 
