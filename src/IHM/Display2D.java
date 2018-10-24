@@ -104,7 +104,7 @@ public class Display2D implements Observer{
 		double x=700;
 		double y= 400;
 		for (Face f : faces) {
-		//System.out.println("polygon"+ cpt+ "  "+(f.getP1().getX()+x));
+		//System.out.println("polygon"+ cpt+ "  "+(f.getP1().getX()+x) );
 			cpt++;
 			gc.strokePolygon(	new double[] {f.getP1().getX()+x,f.getP2().getX()+x,f.getP3().getX()+x},
 								new double[] {f.getP1().getY()+y,f.getP2().getY()+y,f.getP3().getY()+y},
