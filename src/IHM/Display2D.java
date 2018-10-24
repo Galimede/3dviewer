@@ -82,19 +82,18 @@ public class Display2D implements Observer{
 			vecteur[0]= -20.0;
 		}
 		else if(e.getSource().equals(translationH)) {
-			vecteur[1]= -20.0;
-		}
-		else {
 			vecteur[1]= 20.0;
 		}
-		Face ftmp;
-		for(int i=0;i<polygon.size();i++) {
-			ftmp=new Face(	new Point(Fonctions.translation3D(polygon.get(i).getP1().getMatrice(),vecteur)),
-							new Point(Fonctions.translation3D(polygon.get(i).getP2().getMatrice(),vecteur)),
-							new Point(Fonctions.translation3D(polygon.get(i).getP3().getMatrice(),vecteur)));
-			polygon.set(i,ftmp);
+		else {
+			vecteur[1]= -20.0;
+		}
+		for(Face f: polygon) {	
+			f.getP1().setMatrice(Fonctions.translation3D(f.getP1().getMatrice(),vecteur));
+			f.getP2().setMatrice(Fonctions.translation3D(f.getP2().getMatrice(),vecteur));
+			f.getP3().setMatrice(Fonctions.translation3D(f.getP3().getMatrice(),vecteur));
 		}
 		m.setFaces(polygon);
+		affichage(m.getFaces());
 	}
 
 	public void affichage (ArrayList<Face> faces){
@@ -105,9 +104,7 @@ public class Display2D implements Observer{
 		double x=700;
 		double y= 400;
 		for (Face f : faces) {
-		if(cpt==1) {
-			System.out.println("polygon"+ cpt+" "+f.getP1().toString());
-		}
+		//System.out.println("polygon"+ cpt+ "  "+(f.getP1().getX()+x) );
 			cpt++;
 			gc.strokePolygon(	new double[] {f.getP1().getX()+x,f.getP2().getX()+x,f.getP3().getX()+x},
 								new double[] {f.getP1().getY()+y,f.getP2().getY()+y,f.getP3().getY()+y},
@@ -121,9 +118,7 @@ public class Display2D implements Observer{
 
 	@Override
 	public void update(Observable o, Object arg) {
-		ArrayList<Face> arg2 = (ArrayList<Face>)arg;
-		System.out.println(" "+arg2.get(0).getP1().toString());
-		affichage(arg2);
+		affichage((ArrayList<Face>)arg);
 		
 	}
 

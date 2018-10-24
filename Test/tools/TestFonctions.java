@@ -36,8 +36,20 @@ class TestFonctions {
 
 	@Test
 	void testHomothetie() {
-		
-		
+		double k = 8.0;
+		double point[][] = {{1,1,1,1,2,2,2},
+				  			{},
+				  			{},
+				  			{}};
+		double homotethie[][] = {{k,0,0,0},
+								 {0,k,0,0},
+								 {0,0,k,0},
+								 {0,0,0,1}};
+		double res[][] = {{},
+						  {},
+						  {},
+						  {}};	
+		assertArrayEquals(res, Fonctions.homothetie(point, k));
 		fail("Not yet implemented");
 	}
 
