@@ -40,5 +40,6 @@ public class Face {
 	public Point getP3() {
 		return p3;
 	}
+	
 
 }

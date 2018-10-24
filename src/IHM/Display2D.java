@@ -19,7 +19,8 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import main.Face;
 import main.Model;
-import tools.Math;
+import main.Point;
+import tools.Fonctions;
 public class Display2D implements Observer{
 	
 
@@ -67,10 +68,10 @@ public class Display2D implements Observer{
 	private void translation(ActionEvent e, Model m) {
 		ArrayList<Face> polygon= m.getFaces();
 		double[]vecteur= {100.0,0.0,0.0};
-		for(Face f: polygon) {
-			f.getP1().setMatrice(Math.translation3D(f.getP1().getMatrice(),vecteur));
-			f.getP2().setMatrice(Math.translation3D(f.getP2().getMatrice(),vecteur));
-			f.getP3().setMatrice(Math.translation3D(f.getP3().getMatrice(),vecteur));
+		for(Face f: polygon) {	
+			f.getP1().setMatrice(Fonctions.translation3D(f.getP1().getMatrice(),vecteur));
+			f.getP2().setMatrice(Fonctions.translation3D(f.getP2().getMatrice(),vecteur));
+			f.getP3().setMatrice(Fonctions.translation3D(f.getP3().getMatrice(),vecteur));
 		}
 		m.setFaces(polygon);
 		affichage(m.getFaces());
@@ -84,7 +85,7 @@ public class Display2D implements Observer{
 		double x=700;
 		double y= 400;
 		for (Face f : faces) {
-			System.out.println("polygon"+ cpt+ "  "+(f.getP1().getX()+x));
+		//	System.out.println("polygon"+ cpt+ "  "+(f.getP1().getX()+x));
 			cpt++;
 			gc.strokePolygon(	new double[] {f.getP1().getX()+x,f.getP2().getX()+x,f.getP3().getX()+x},
 								new double[] {f.getP1().getY()+y,f.getP2().getY()+y,f.getP3().getY()+y},

@@ -87,7 +87,7 @@ public class PlyReader {
 					}
 					if(i<=nbPoints-1) {
 						tmp=getCoorPoint(actu);
-						System.out.println(tmp[0]+" "+tmp[1]+" "+tmp[2]);
+					//	System.out.println(tmp[0]+" "+tmp[1]+" "+tmp[2]);
 
 						points.add(new Point(tmp[0],tmp[1],tmp[2]));
 					}else {
@@ -111,7 +111,7 @@ public class PlyReader {
  * @return les 3 points sous forme de 
  */
 	private double[] getPointFace(String actu) {
-		System.out.println(actu);
+	//	System.out.println(actu);
 		String tmps=actu.substring(2,actu.length());
 		double res[]=new double[3];
 		int idx=0;
@@ -158,7 +158,7 @@ public class PlyReader {
 		while(res.charAt(0)>'9'||res.charAt(0)==' '){
 			res=res.substring(1,res.length());
 		}
-		System.out.println(res);
+		//System.out.println(res);
 		return Integer.parseInt(res);
 	}
 }
