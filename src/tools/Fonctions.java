@@ -1,6 +1,6 @@
 package tools;
 
-public class Math {
+public class Fonctions {
 	public static double[][] multiplier(double[][] MA, double[][] MB){
 		double[][] MC;
 		int l, c;
@@ -35,14 +35,14 @@ public class Math {
 			return null;
 		}
 		if(vecteur.length!=3) {
-			System.out.println("Vecteur non valide ");
+			System.out.println("Vecteur non valide un vectuer a 3 dimensions est demandé");
 			return null;
 		}
 		if(point.length!=4||point[0].length!=4) {
 			System.out.println("Matrice non valide pour la 3D taille esperer 4x4 taille recus "+point.length+"x"+point[0].length);
 			return null;
 		}
-		double [][]matV= {{1,0,0,vecteur[0]},{0,1,0,vecteur[1]},{0,0,1,vecteur[2]},{0,0,0,1}};
+		double [][]matV= {{1.0,0.0,0.0,vecteur[0]},{0.0,1.0,0.0,vecteur[1]},{0.0,0.0,1.0,vecteur[2]},{0.0,0.0,0.0,1.0}};
 		return multiplier(point,matV);
 	}
 

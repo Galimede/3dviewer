@@ -1,15 +1,15 @@
 package main;
 
 public class Point {
-	private double[][]matrice= {{0.0,0.0,0.0,0.0},
-								{0.0,0.0,0.0,0.0},
-								{0.0,0.0,0.0,0.0},
+	private double[][]matrice= {{1.0,0.0,0.0,0.0},
+								{0.0,1.0,0.0,0.0},
+								{0.0,0.0,1.0,0.0},
 								{0.0,0.0,0.0,1.0}
 	};
 	
 	@Override
 	public String toString() {
-		return "Point [x=" + matrice[0][0] + ", y=" + matrice[1][1] + ", z=" + matrice[2][2] + "]";
+		return "Point [x=" + matrice[0][3] + ", y=" + matrice[1][3] + ", z=" + matrice[2][3] + "]";
 	}
 	/**
 	 * @param x Coordonnee en largeur d'un point
@@ -17,27 +17,30 @@ public class Point {
 	 * @param z Coordonnee en profondeur d'un point
 	 */
 	public Point(double x, double y, double z) {
-		matrice[0][0]=x;
-		matrice[1][1]=y;
-		matrice[2][2]=z;
+		matrice[0][3]=x;
+		matrice[1][3]=y;
+		matrice[2][3]=z;
+	}
+	public Point(double [][]matrice) {
+		this.matrice=matrice;
 	}
 	/**
 	 * @return Renvoie l'ordonnée du point 
 	 */
 	public double getX() {
-		return matrice[0][0];
+		return matrice[0][3];
 	}	
 	/**
 	 * @return Renvoie l'ordonnée du point
 	 */
 	public double getY() {
-		return matrice[1][1];
+		return matrice[1][3];
 	}
 	/**
 	 * @return Renvoie la coordonnée en profondeur du point
 	 */
 	public double getZ() {
-		return matrice[2][2];
+		return matrice[2][3];
 	}
 	/**
 	 * @return la matrice 3D du point correspondant
