@@ -1,31 +1,34 @@
 package tools;
 
 public class Fonctions {
-	public static double[][] multiplier(double[][] MA, double[][] MB){
-		double[][] MC;
+	public static double[][] multiplier(double[][] A, double[][] B){
+		double[][] AB;
 		int l, c;
-		if (MA.length * MA[0].length < MB.length * MB[0].length) {
-			l = MB.length;
-			c = MB[0].length;
-		} else {
-			l = MA.length;
-			c = MA[0].length;
+		if (A[0].length != B.length) {
+			return null;
 		}
-		MC = new double[l][c];
+		if (A.length * A[0].length < B.length * B[0].length) {
+			l = B.length;
+			c = B[0].length;
+		} else {
+			l = A.length;
+			c = A[0].length;
+		}
+		AB = new double[l][c];
 		l = 0;
-		for (int i = 0; i < MA.length; i++) {
+		for (int i = 0; i < A.length; i++) {
 			c = 0;
-			for (int n = 0; n < MB[0].length; n++) {
+			for (int n = 0; n < B[0].length; n++) {
 				double calcul = 0;
-				for (int m = 0; m < MB.length; m++) {
-					calcul += MA[i][m] * MB[m][n];
+				for (int m = 0; m < B.length; m++) {
+					calcul += A[i][m] * B[m][n];
 				}
-				MC[l][c] =  (calcul/1);
+				AB[l][c] =  (calcul/1);
 				c++;
 			}
 			l++;
 		}
-		return MC;
+		return AB;
 	}
 
 
@@ -85,30 +88,9 @@ public class Fonctions {
 	 * @return Un tableau à deux dimensions représentant la rotation sur un axe autour de l'origine
 	 */
 	public static double[][] rotation(double [][]points, double angleX, double angleY,  double angleZ) {
-		double cosX = Math.cos(angleX);
-		double sinX = Math.sin(angleX);
-		double[][] rX = { 
-				{1,0,    0,   0},
-		        {0,cosX,-sinX,0},
-      		    {0,sinX,cosX, 0},
- 		        {0,0,   0,    1}
-		};
-		double cosY = Math.cos(angleY);
-		double sinY = Math.sin(angleY);
-		double[][] rY = { 
-				{cosY, 0,sinY,0},
-			    {0,    1,0   ,0}, 
-	    		{-sinY,0,cosY,0},
-			    {0,    0,0,   1}
-		};
-		double cosZ = Math.cos(angleZ);
-		double sinZ = Math.sin(angleZ);
-		double[][] rZ = { 
-				{cosZ,-sinZ, 0, 0},
-				{sinZ, cosZ,  0, 0},
-				{0,    0,     1, 0},
-			     {0,   0,     0, 1}
-		};
+		double[][] rX = { {0} };
+		double[][] rY = { {0} };
+		double[][] rZ = { {0} };
 		double[][] rotation = multiplier(rZ, rY);
 		rotation = multiplier(rotation, rX);
 		return rotation;
