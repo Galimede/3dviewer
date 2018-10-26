@@ -31,8 +31,9 @@ public class Display2D implements Observer{
 	Button translationG;
 	Button translationD;
 	Button rotation;
-
-
+	Button zoomPlus;
+	Button zoomMoins;
+	
 	public Display2D(Model modele) {
 		modele.addObserver(this);
 		Stage primaryStage = new Stage();
@@ -49,8 +50,8 @@ public class Display2D implements Observer{
 		rotation = new Button("Rotation");
 		HBox h= new HBox();
 		Label zoom = new Label("Zoom");
-		Button zoomPlus = new Button("+");
-		Button zoomMoins = new Button("-");
+		zoomPlus = new Button("+");
+		zoomMoins = new Button("-");
 		translationH = new Button("Translation haut");
 		translationB = new Button("Translation bas");
 		translationG = new Button("Translation gauche");
@@ -60,6 +61,8 @@ public class Display2D implements Observer{
 		translationG.setOnMousePressed(e-> translation(e,modele));
 		translationD.setOnMousePressed(e-> translation(e,modele));
 		rotation.setOnMousePressed(e-> rotation(e,modele));
+		zoomPlus.setOnMousePressed(e-> zoom(e,modele));
+		zoomMoins.setOnMousePressed(e-> zoom(e,modele));
 		h.getChildren().addAll(zoomMoins,zoomPlus);
 		v.getChildren().addAll(rotation,zoom,h,translationH,translationB,translationG,translationD);
 		root.getChildren().addAll(v,canvas);
@@ -75,12 +78,31 @@ public class Display2D implements Observer{
 		
 	}
 	
+	private void zoom(MouseEvent e, Model m) {
+		ArrayList<Face> polygon= m.getFaces();
+		double rapport=0.0;
+		if(e.getSource().equals(zoomPlus)) {
+			rapport=1.2;
+		}
+		else {
+			rapport=0.8;
+		}
+		Face ftmp;
+		for(int i=0;i<polygon.size();i++) {
+			ftmp=new Face(	new Point(Fonctions.homothetie(polygon.get(i).getP1().getMatrice(),rapport)),
+							new Point(Fonctions.homothetie(polygon.get(i).getP2().getMatrice(),rapport)),
+							new Point(Fonctions.homothetie(polygon.get(i).getP3().getMatrice(),rapport)));
+			polygon.set(i,ftmp);
+		}
+		m.setFaces(polygon);
+	}
+
 	private void rotation(MouseEvent e, Model m) {
 		ArrayList<Face> polygon= m.getFaces();
 		double x=0.0;
 		double y=0.0;
 		if(e.getSource().equals(rotation)) {
-			x= Math.PI/2.0;
+			x= Math.PI/4.0;
 			y=0.0;
 		}
 		else if(e.getSource().equals(translationG)) {
