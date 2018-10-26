@@ -89,9 +89,9 @@ public class Display2D implements Observer{
 		}
 		Face ftmp;
 		for(int i=0;i<polygon.size();i++) {
-			ftmp=new Face(	new Point(Fonctions.homothetie(polygon.get(i).getP1().getMatrice(),rapport)),
-							new Point(Fonctions.homothetie(polygon.get(i).getP2().getMatrice(),rapport)),
-							new Point(Fonctions.homothetie(polygon.get(i).getP3().getMatrice(),rapport)));
+			ftmp=new Face(	new Point(Fonctions.homothetie(polygon.get(i).getP1(),rapport)),
+							new Point(Fonctions.homothetie(polygon.get(i).getP2(),rapport)),
+							new Point(Fonctions.homothetie(polygon.get(i).getP3(),rapport)));
 			polygon.set(i,ftmp);
 		}
 		m.setFaces(polygon);
@@ -101,6 +101,7 @@ public class Display2D implements Observer{
 		ArrayList<Face> polygon= m.getFaces();
 		double x=0.0;
 		double y=0.0;
+		double z=0.0;
 		if(e.getSource().equals(rotation)) {
 			x= Math.PI/4.0;
 			y=0.0;
@@ -116,13 +117,12 @@ public class Display2D implements Observer{
 		}
 		Face ftmp;
 		for(int i=0;i<polygon.size();i++) {
-			ftmp=new Face(	new Point(Fonctions.rotation(polygon.get(i).getP1().getMatrice(),x,y,0.0)),
-							new Point(Fonctions.rotation(polygon.get(i).getP2().getMatrice(),x,y,0.0)),
-							new Point(Fonctions.rotation(polygon.get(i).getP3().getMatrice(),x,y,0.0)));
+			ftmp=new Face(	new Point(Fonctions.rotation(polygon.get(i).getP1(),x,y,z)),
+							new Point(Fonctions.rotation(polygon.get(i).getP2(),x,y,z)),
+							new Point(Fonctions.rotation(polygon.get(i).getP3(),x,y,z)));
 			polygon.set(i,ftmp);
 		}
 		m.setFaces(polygon);
-		
 	}
 
 	private void translation(MouseEvent e, Model m) {
@@ -142,9 +142,9 @@ public class Display2D implements Observer{
 		}
 		Face ftmp;
 		for(int i=0;i<polygon.size();i++) {
-			ftmp=new Face(	new Point(Fonctions.translation3D(polygon.get(i).getP1().getMatrice(),vecteur)),
-							new Point(Fonctions.translation3D(polygon.get(i).getP2().getMatrice(),vecteur)),
-							new Point(Fonctions.translation3D(polygon.get(i).getP3().getMatrice(),vecteur)));
+			ftmp=new Face(	new Point(Fonctions.translation3D(polygon.get(i).getP1(),vecteur)),
+							new Point(Fonctions.translation3D(polygon.get(i).getP2(),vecteur)),
+							new Point(Fonctions.translation3D(polygon.get(i).getP3(),vecteur)));
 			polygon.set(i,ftmp);
 		}
 		m.setFaces(polygon);
@@ -159,14 +159,14 @@ public class Display2D implements Observer{
 		double y= 400;
 		for (Face f : faces) {
 		if(cpt==1) {
-			System.out.println("polygon"+ cpt+" "+f.getP1().toString());
+			System.out.println("polygon"+ cpt+" "+f.getOp1().toString());
 		}
 			cpt++;
-			gc.strokePolygon(	new double[] {f.getP1().getX()+x,f.getP2().getX()+x,f.getP3().getX()+x},
-								new double[] {f.getP1().getY()+y,f.getP2().getY()+y,f.getP3().getY()+y},
+			gc.strokePolygon(	new double[] {f.getOp1().getX()+x,f.getOp2().getX()+x,f.getOp3().getX()+x},
+								new double[] {f.getOp1().getY()+y,f.getOp2().getY()+y,f.getOp3().getY()+y},
 								3);
-			gc.fillPolygon(	new double[] {f.getP1().getX()+x,f.getP2().getX()+x,f.getP3().getX()+x},
-					new double[] {f.getP1().getY()+y,f.getP2().getY()+y,f.getP3().getY()+y},
+			gc.fillPolygon(	new double[] {f.getOp1().getX()+x,f.getOp2().getX()+x,f.getOp3().getX()+x},
+					new double[] {f.getOp1().getY()+y,f.getOp2().getY()+y,f.getOp3().getY()+y},
 					3);
 		}
 		
@@ -175,7 +175,7 @@ public class Display2D implements Observer{
 	@Override
 	public void update(Observable o, Object arg) {
 		ArrayList<Face> arg2 = (ArrayList<Face>)arg;
-		System.out.println(" "+arg2.get(0).getP1().toString());
+		System.out.println(" "+arg2.get(0).getOp1().toString());
 		affichage(arg2);
 		
 	}
