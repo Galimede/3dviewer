@@ -37,7 +37,7 @@ public class Face {
 		return p2;
 	}
 	public Point getOp3() {
-		return p2;
+		return p3;
 	}
 	/**
 	 * @return the p2

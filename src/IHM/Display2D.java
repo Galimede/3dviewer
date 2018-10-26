@@ -1,13 +1,9 @@
 package IHM;
 
 import java.awt.Toolkit;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
-
-import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -71,7 +67,7 @@ public class Display2D implements Observer{
 		
 		Scene main = new Scene(root);
 		primaryStage.setScene(main);
-		primaryStage.setTitle("Dolphin");
+		primaryStage.setTitle("Modelisation");
 		primaryStage.setMinHeight(hScreen);
 		primaryStage.setWidth(wScreen);
 		primaryStage.show();
@@ -104,7 +100,6 @@ public class Display2D implements Observer{
 		double z=0.0;
 		if(e.getSource().equals(rotation)) {
 			x= Math.PI/4.0;
-			y=0.0;
 		}
 		else if(e.getSource().equals(translationG)) {
 
@@ -152,11 +147,11 @@ public class Display2D implements Observer{
 
 	public void affichage (ArrayList<Face> faces){
 		gc.clearRect(0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
-		gc.setStroke(Color.BLACK);
 		gc.setFill(Color.RED);
 		int cpt=1;
-		double x=700;
-		double y= 400;
+		double x=700.0;
+		double y= 400.0;
+		//gc.fillRect(0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
 		for (Face f : faces) {
 		if(cpt==1) {
 			System.out.println("polygon"+ cpt+" "+f.getOp1().toString());
@@ -166,16 +161,16 @@ public class Display2D implements Observer{
 								new double[] {f.getOp1().getY()+y,f.getOp2().getY()+y,f.getOp3().getY()+y},
 								3);
 			gc.fillPolygon(	new double[] {f.getOp1().getX()+x,f.getOp2().getX()+x,f.getOp3().getX()+x},
-					new double[] {f.getOp1().getY()+y,f.getOp2().getY()+y,f.getOp3().getY()+y},
-					3);
+							new double[] {f.getOp1().getY()+y,f.getOp2().getY()+y,f.getOp3().getY()+y},
+							3);
 		}
 		
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void update(Observable o, Object arg) {
 		ArrayList<Face> arg2 = (ArrayList<Face>)arg;
-		System.out.println(" "+arg2.get(0).getOp1().toString());
 		affichage(arg2);
 		
 	}
