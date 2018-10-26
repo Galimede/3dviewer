@@ -53,26 +53,25 @@ public class Fonctions {
 	 *  Retourne l'homothetie 3D de rapport k autour de l'origine
 	 *  @param points
 	 *  		Matrice des points
-	 *  @param k 
+	 *  @param rapport 
 	 *  		Rapport utilisé pour l'homothetie
 	 *  @return Un tableau à deux dimensions représentant l'homothétie 3D   
 	 */
-	public static double[][] homothetie(double [][]points, double k){
+	public static double[][] homothetie(double [][]points, double rapport){
 		if(points == null) {
 			System.out.println("Pas de points fournis");
 			return null;
 		}
-		double[] origine = {0,0,0};
-		points = translation3D(points,origine);
-		double[][] res = points;
-		double[][] homothetie = {  {k,0,0,0},
-				{0,k,0,0},
-				{0,0,k,0},
+		double[] vecteurToOrigine= {-points[0][3],-points[1][3],-points[2][3]};
+		double[] vecteurToPoint= {points[0][3],points[1][3],points[2][3]};
+		points=translation3D(points,vecteurToOrigine);
+		double[][] homothetie = {  
+				{rapport,0,0,0},
+				{0,rapport,0,0},
+				{0,0,rapport,0},
 				{0,0,0,1}
 		};	
-		res = multiplier(res,homothetie);
-		res = translation3D(res,origine);
-		return res;
+		return translation3D(multiplier(points,homothetie),vecteurToPoint);
 	}
 
 	/** 
@@ -94,7 +93,7 @@ public class Fonctions {
 		double cosX = Math.cos(angleX);
 		double sinX = Math.sin(angleX);
 		double[][] rX = { 
-				{1,0,    0,   0},
+				{1,0,    0.0,   0},
 				{0,cosX,-sinX,0},
 				{0,sinX,cosX, 0},
 				{0,0,   0,    1}
