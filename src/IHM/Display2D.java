@@ -30,6 +30,7 @@ public class Display2D implements Observer{
 	Button translationB;
 	Button translationG;
 	Button translationD;
+	Button rotation;
 
 
 	public Display2D(Model modele) {
@@ -45,7 +46,7 @@ public class Display2D implements Observer{
 		gc = canvas.getGraphicsContext2D();
 		VBox v = new VBox();
 		v.setPrefSize(200, 200);
-		Button rotation = new Button("Rotation");
+		rotation = new Button("Rotation");
 		HBox h= new HBox();
 		Label zoom = new Label("Zoom");
 		Button zoomPlus = new Button("+");
@@ -74,7 +75,31 @@ public class Display2D implements Observer{
 		
 	}
 	
-	private void rotation(MouseEvent e, Model modele) {
+	private void rotation(MouseEvent e, Model m) {
+		ArrayList<Face> polygon= m.getFaces();
+		double x=0.0;
+		double y=0.0;
+		if(e.getSource().equals(rotation)) {
+			x= Math.PI/2.0;
+			y=0.0;
+		}
+		else if(e.getSource().equals(translationG)) {
+
+		}
+		else if(e.getSource().equals(translationH)) {
+	
+		}
+		else {
+		
+		}
+		Face ftmp;
+		for(int i=0;i<polygon.size();i++) {
+			ftmp=new Face(	new Point(Fonctions.rotation(polygon.get(i).getP1().getMatrice(),x,y,0.0)),
+							new Point(Fonctions.rotation(polygon.get(i).getP2().getMatrice(),x,y,0.0)),
+							new Point(Fonctions.rotation(polygon.get(i).getP3().getMatrice(),x,y,0.0)));
+			polygon.set(i,ftmp);
+		}
+		m.setFaces(polygon);
 		
 	}
 
