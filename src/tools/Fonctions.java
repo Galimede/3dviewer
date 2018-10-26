@@ -116,7 +116,7 @@ public class Fonctions {
 				{0,    0,     0, 1}
 		};
 		double[][] rotation = multiplier(rZ, rY);
-		rotation = multiplier(rotation, rX);
+		rotation = multiplier(rotation, rX);  
 		return translation3D(multiplier(points,rotation),vecteurToPoint);
 	}
 }
