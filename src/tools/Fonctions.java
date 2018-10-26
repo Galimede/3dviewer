@@ -92,27 +92,29 @@ public class Fonctions {
 		points=translation3D(points,vecteurToOrigine);
 		double cosX = Math.cos(angleX);
 		double sinX = Math.sin(angleX);
+		double zero=0.0;
+		double un=1.0;
 		double[][] rX = { 
-				{1,0,    0.0,   0},
-				{0,cosX,-sinX,0},
-				{0,sinX,cosX, 0},
-				{0,0,   0,    1}
+				{un,zero,zero,zero},
+				{zero,cosX,-sinX,zero},
+				{zero,sinX,cosX, zero},
+				{zero,zero,zero,un}
 		};
 		double cosY = Math.cos(angleY);
 		double sinY = Math.sin(angleY);
 		double[][] rY = { 
-				{cosY, 0,sinY,0},
-				{0,    1,0   ,0}, 
-				{-sinY,0,cosY,0},
-				{0,    0,0,   1}
+				{cosY,zero,sinY,zero},
+				{zero,un,zero,zero}, 
+				{-sinY,zero,cosY,zero},
+				{zero,zero,zero,un}
 		};
 		double cosZ = Math.cos(angleZ);
 		double sinZ = Math.sin(angleZ);
 		double[][] rZ = { 
-				{cosZ,-sinZ, 0, 0},
-				{sinZ, cosZ, 0, 0},
-				{0,    0,    1, 0},
-				{0,    0,     0, 1}
+				{cosZ,-sinZ,zero,zero},
+				{sinZ, cosZ,zero,zero},
+				{zero,zero,un,zero},
+				{zero,zero,zero,un}
 		};
 		double[][] rotation = multiplier(rZ, rY);
 		rotation = multiplier(rotation, rX);  
