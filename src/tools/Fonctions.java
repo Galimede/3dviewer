@@ -99,7 +99,6 @@ public class Fonctions {
 				{0,sinX,cosX, 0},
 				{0,0,   0,    1}
 		};
-		points=multiplier(points,rX);
 		double cosY = Math.cos(angleY);
 		double sinY = Math.sin(angleY);
 		double[][] rY = { 
@@ -108,7 +107,6 @@ public class Fonctions {
 				{-sinY,0,cosY,0},
 				{0,    0,0,   1}
 		};
-		points=multiplier(points,rY);
 		double cosZ = Math.cos(angleZ);
 		double sinZ = Math.sin(angleZ);
 		double[][] rZ = { 
@@ -117,7 +115,6 @@ public class Fonctions {
 				{0,    0,    1, 0},
 				{0,    0,     0, 1}
 		};
-		points=multiplier(points,rZ);
 		double[][] rotation = multiplier(rZ, rY);
 		rotation = multiplier(rotation, rX);
 		return translation3D(multiplier(points,rotation),vecteurToPoint);
