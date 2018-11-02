@@ -1,0 +1,56 @@
+#translationPane {
+	-fx-border: groove;
+	-fx-border-color: white;
+}
+
+#rotationIcone {
+ -fx-background-color: Transparent;
+}
+
+#centerArrow {
+	-fx-background-color: Transparent;
+}
+
+#leftArrowTranslation {
+	-fx-background-color: Transparent;
+}
+
+#rightArrowTranslation {
+	-fx-background-color: Transparent;
+
+}
+
+#upArrowTranslation {
+	-fx-background-color: Transparent;
+}
+
+#downArrowTranslation {
+	-fx-background-color: Transparent;
+}
+
+#ouvrir {
+    -fx-background-color: 
+        rgba(0,0,0,0.08),
+        linear-gradient(#9a9a9a, #909090),
+        linear-gradient(white 0%, #f3f3f3 50%, #ececec 51%, #f2f2f2 100%);
+    -fx-background-insets: 0 0 -1 0,0,1;
+    -fx-background-radius: 5,5,4;
+    -fx-padding: 3 30 3 30;
+    -fx-text-fill: #242d35;
+    -fx-font-size: 14px;
+}
+
+#ouvrir:hover {
+   -fx-background-color: 
+        rgba(0,0,0,0.08),
+        linear-gradient(#9a9a9a, #909090),
+        linear-gradient(white 0%, #f3f3f3 50%, #e1e1e1 51%, #e1e1e1 100%);
+}
+
+#fichier {
+	-fx-background-color: Transparent;
+}
+
+#fichier:hover {
+	-fx-text-decoration: underline;
+}

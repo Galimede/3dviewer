@@ -26,11 +26,11 @@ class TestFonctions {
 							{0,0,1,1},
 							{0,0,0,1}};
 		
-		double resEspéré[][] = {{1,0,0,4},
+		double resEspere[][] = {{1,0,0,4},
 								{0,1,0,2},
 								{0,0,1,1},
 								{0,0,0,1}} ;
-		assertArrayEquals(resEspéré, Fonctions.translation3D(point, vecteur));
+		assertArrayEquals(resEspere, Fonctions.translation3D(point, vecteur));
 
 	}
 
