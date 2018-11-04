@@ -38,24 +38,36 @@ class TestFonctions {
 	void testHomothetie() {
 		double k = 8.0;
 		double point[][] = {{1,1,1,1,2,2,2},
-				  			{},
-				  			{},
-				  			{}};
+				  			{2,2,2,2,3,3,3},
+				  			{3,3,3,3,4,4,4},
+				  			{1,1,1,1,1,1,1}};
+		
 		double homotethie[][] = {{k,0,0,0},
 								 {0,k,0,0},
 								 {0,0,k,0},
 								 {0,0,0,1}};
-		double res[][] = {{},
-						  {},
-						  {},
-						  {}};	
+		double res[][] = {{8,8,8,8,16,16,16},
+						  {16,16,16,16,24,24,24},
+						  {24,24,24,24,32,32,32},
+						  {1,1,1,1,1,1,1}};	
 		assertArrayEquals(res, Fonctions.homothetie(point, k));
-		fail("Not yet implemented");
+	
 	}
 
 	@Test
 	void testRotation() {
-		fail("Not yet implemented");
+		double point[][] = {{1,1,1,1,2,2,2},
+							{2,2,2,2,3,3,3},
+	  						{3,3,3,3,4,4,4},
+	  						{1,1,1,1,1,1,1}};
+	
+		double[][] expected = {{1,1,1,1,2,2,2},
+							   {2,2,2,2,3,3,3},
+							   {3,3,3,3,4,4,4},
+							   {1,1,1,1,1,1,1}};
+						
+		assertArrayEquals(expected, Fonctions.rotation(point, 0, 0, 00));
+		
 	}
 
 }
