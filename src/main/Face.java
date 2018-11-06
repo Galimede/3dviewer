@@ -25,20 +25,35 @@ public class Face {
 	/**
 	 * @return the p1
 	 */
-	public Point getP1() {
+	public double[][] getP1() {
+		double[][]point=new double[4][1];
+		point[0][0]=p1.getX();point[1][0]=p1.getY();point[2][0]=p1.getZ();point[3][0]=1.0;	
+		return point;
+	}
+	public Point getOp1() {
 		return p1;
+	}
+	public Point getOp2() {
+		return p2;
+	}
+	public Point getOp3() {
+		return p3;
 	}
 	/**
 	 * @return the p2
 	 */
-	public Point getP2() {
-		return p2;
+	public double[][] getP2() {
+		double[][]point=new double[4][1];
+		point[0][0]=p2.getX();point[1][0]=p2.getY();point[2][0]=p2.getZ();point[3][0]=1.0;	
+		return point;
 	}
 	/**
 	 * @return the p3
 	 */
-	public Point getP3() {
-		return p3;
+	public double[][] getP3() {
+		double[][]point=new double[4][1];
+		point[0][0]=p3.getX();point[1][0]=p3.getY();point[2][0]=p3.getZ();point[3][0]=1.0;	
+		return point;
 	}
 	
 

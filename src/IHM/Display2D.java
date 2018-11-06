@@ -1,13 +1,9 @@
 package IHM;
 
 import java.awt.Toolkit;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
-
-import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -30,8 +26,10 @@ public class Display2D implements Observer{
 	Button translationB;
 	Button translationG;
 	Button translationD;
-
-
+	Button rotation;
+	Button zoomPlus;
+	Button zoomMoins;
+	
 	public Display2D(Model modele) {
 		modele.addObserver(this);
 		Stage primaryStage = new Stage();
@@ -45,11 +43,11 @@ public class Display2D implements Observer{
 		gc = canvas.getGraphicsContext2D();
 		VBox v = new VBox();
 		v.setPrefSize(200, 200);
-		Button rotation = new Button("Rotation");
+		rotation = new Button("Rotation");
 		HBox h= new HBox();
 		Label zoom = new Label("Zoom");
-		Button zoomPlus = new Button("+");
-		Button zoomMoins = new Button("-");
+		zoomPlus = new Button("+");
+		zoomMoins = new Button("-");
 		translationH = new Button("Translation haut");
 		translationB = new Button("Translation bas");
 		translationG = new Button("Translation gauche");
@@ -58,6 +56,9 @@ public class Display2D implements Observer{
 		translationB.setOnMousePressed(e-> translation(e,modele));
 		translationG.setOnMousePressed(e-> translation(e,modele));
 		translationD.setOnMousePressed(e-> translation(e,modele));
+		rotation.setOnMousePressed(e-> rotation(e,modele));
+		zoomPlus.setOnMousePressed(e-> zoom(e,modele));
+		zoomMoins.setOnMousePressed(e-> zoom(e,modele));
 		h.getChildren().addAll(zoomMoins,zoomPlus);
 		v.getChildren().addAll(rotation,zoom,h,translationH,translationB,translationG,translationD);
 		root.getChildren().addAll(v,canvas);
@@ -66,13 +67,59 @@ public class Display2D implements Observer{
 		
 		Scene main = new Scene(root);
 		primaryStage.setScene(main);
-		primaryStage.setTitle("Dolphin");
+		primaryStage.setTitle("Modelisation");
 		primaryStage.setMinHeight(hScreen);
 		primaryStage.setWidth(wScreen);
 		primaryStage.show();
 		
 	}
 	
+	private void zoom(MouseEvent e, Model m) {
+		ArrayList<Face> polygon= m.getFaces();
+		double rapport=0.0;
+		if(e.getSource().equals(zoomPlus)) {
+			rapport=1.2;
+		}
+		else {
+			rapport=0.8;
+		}
+		Face ftmp;
+		for(int i=0;i<polygon.size();i++) {
+			ftmp=new Face(	new Point(Fonctions.homothetie(polygon.get(i).getP1(),rapport)),
+							new Point(Fonctions.homothetie(polygon.get(i).getP2(),rapport)),
+							new Point(Fonctions.homothetie(polygon.get(i).getP3(),rapport)));
+			polygon.set(i,ftmp);
+		}
+		m.setFaces(polygon);
+	}
+
+	private void rotation(MouseEvent e, Model m) {
+		ArrayList<Face> polygon= m.getFaces();
+		double x=0.0;
+		double y=0.0;
+		double z=0.0;
+		if(e.getSource().equals(rotation)) {
+			x= Math.PI/4.0;
+		}
+		else if(e.getSource().equals(translationG)) {
+
+		}
+		else if(e.getSource().equals(translationH)) {
+	
+		}
+		else {
+		
+		}
+		Face ftmp;
+		for(int i=0;i<polygon.size();i++) {
+			ftmp=new Face(	new Point(Fonctions.rotation(polygon.get(i).getP1(),x,y,z)),
+							new Point(Fonctions.rotation(polygon.get(i).getP2(),x,y,z)),
+							new Point(Fonctions.rotation(polygon.get(i).getP3(),x,y,z)));
+			polygon.set(i,ftmp);
+		}
+		m.setFaces(polygon);
+	}
+
 	private void translation(MouseEvent e, Model m) {
 		ArrayList<Face> polygon= m.getFaces();
 		double []vecteur= {0.0,0.0,0.0};
@@ -90,9 +137,9 @@ public class Display2D implements Observer{
 		}
 		Face ftmp;
 		for(int i=0;i<polygon.size();i++) {
-			ftmp=new Face(	new Point(Fonctions.translation3D(polygon.get(i).getP1().getMatrice(),vecteur)),
-							new Point(Fonctions.translation3D(polygon.get(i).getP2().getMatrice(),vecteur)),
-							new Point(Fonctions.translation3D(polygon.get(i).getP3().getMatrice(),vecteur)));
+			ftmp=new Face(	new Point(Fonctions.translation3D(polygon.get(i).getP1(),vecteur)),
+							new Point(Fonctions.translation3D(polygon.get(i).getP2(),vecteur)),
+							new Point(Fonctions.translation3D(polygon.get(i).getP3(),vecteur)));
 			polygon.set(i,ftmp);
 		}
 		m.setFaces(polygon);
@@ -100,32 +147,33 @@ public class Display2D implements Observer{
 
 	public void affichage (ArrayList<Face> faces){
 		gc.clearRect(0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
-		gc.setStroke(Color.BLACK);
 		gc.setFill(Color.RED);
 		int cpt=1;
-		double x=700;
-		double y= 400;
+		double x=700.0;
+		double y= 400.0;
+		//gc.fillRect(0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
 		for (Face f : faces) {
 		if(cpt==1) {
-			System.out.println("polygon"+ cpt+" "+f.getP1().toString());
+			System.out.println("polygon"+ cpt+" "+f.getOp1().toString());
 		}
 			cpt++;
-			gc.strokePolygon(	new double[] {f.getP1().getX()+x,f.getP2().getX()+x,f.getP3().getX()+x},
-								new double[] {f.getP1().getY()+y,f.getP2().getY()+y,f.getP3().getY()+y},
+			gc.strokePolygon(	new double[] {f.getOp1().getX()+x,f.getOp2().getX()+x,f.getOp3().getX()+x},
+								new double[] {f.getOp1().getY()+y,f.getOp2().getY()+y,f.getOp3().getY()+y},
 								3);
-			gc.fillPolygon(	new double[] {f.getP1().getX()+x,f.getP2().getX()+x,f.getP3().getX()+x},
-					new double[] {f.getP1().getY()+y,f.getP2().getY()+y,f.getP3().getY()+y},
-					3);
+			gc.fillPolygon(	new double[] {f.getOp1().getX()+x,f.getOp2().getX()+x,f.getOp3().getX()+x},
+							new double[] {f.getOp1().getY()+y,f.getOp2().getY()+y,f.getOp3().getY()+y},
+							3);
 		}
 		
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void update(Observable o, Object arg) {
 		ArrayList<Face> arg2 = (ArrayList<Face>)arg;
-		System.out.println(" "+arg2.get(0).getP1().toString());
 		affichage(arg2);
 		
 	}
 
 }
+
