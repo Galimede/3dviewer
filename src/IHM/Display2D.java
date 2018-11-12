@@ -13,6 +13,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import main.Face;
 import main.Model;
@@ -29,8 +30,13 @@ public class Display2D implements Observer{
 	Button rotation;
 	Button zoomPlus;
 	Button zoomMoins;
+	Button affFaces;
+	Button affSegments;
+	Button affDefaut;
+	boolean faceAffichées;
 	
 	public Display2D(Model modele) {
+		faceAffichées = true;
 		modele.addObserver(this);
 		Stage primaryStage = new Stage();
 		double hScreen=Toolkit.getDefaultToolkit().getScreenSize().getHeight()-85;
@@ -46,6 +52,13 @@ public class Display2D implements Observer{
 		rotation = new Button("Rotation");
 		HBox h= new HBox();
 		Label zoom = new Label("Zoom");
+		//truc ajoutés pour laffichages des segments et faces
+		affDefaut = new Button ("Defaut");
+		affFaces = new Button ("Afficher Faces");
+		affDefaut.setOnMousePressed(e -> faceAffichées =affichageDefaut(modele.getFaces()));
+		affFaces.setOnMousePressed(e -> faceAffichées = afficherFaces(e,faceAffichées,modele));
+		affSegments = new Button ("Afficher Segments");
+		
 		zoomPlus = new Button("+");
 		zoomMoins = new Button("-");
 		translationH = new Button("Translation haut");
@@ -60,9 +73,9 @@ public class Display2D implements Observer{
 		zoomPlus.setOnMousePressed(e-> zoom(e,modele));
 		zoomMoins.setOnMousePressed(e-> zoom(e,modele));
 		h.getChildren().addAll(zoomMoins,zoomPlus);
-		v.getChildren().addAll(rotation,zoom,h,translationH,translationB,translationG,translationD);
+		v.getChildren().addAll(affDefaut,affFaces,rotation,zoom,h,translationH,translationB,translationG,translationD);
 		root.getChildren().addAll(v,canvas);
-		affichage(modele.getFaces());
+		affichageDefaut(modele.getFaces());
 		
 		
 		Scene main = new Scene(root);
@@ -72,6 +85,42 @@ public class Display2D implements Observer{
 		primaryStage.setWidth(wScreen);
 		primaryStage.show();
 		
+	}
+	
+	private boolean afficherFaces(MouseEvent e, boolean affichées, Model m ) {
+		gc.clearRect(0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
+		int cpt=1;
+		double x=700.0;
+		double y= 400.0;
+		if (!affichées) {
+			gc.setFill(Color.RED);
+			for (Face f : m.getFaces()) {
+				if(cpt==1) {
+					System.out.println("polygon"+ cpt+" "+f.getOp1().toString());
+				}
+					cpt++;
+					gc.strokePolygon(	new double[] {f.getOp1().getX()+x,f.getOp2().getX()+x,f.getOp3().getX()+x},
+										new double[] {f.getOp1().getY()+y,f.getOp2().getY()+y,f.getOp3().getY()+y},
+										3);
+					gc.fillPolygon(	new double[] {f.getOp1().getX()+x,f.getOp2().getX()+x,f.getOp3().getX()+x},
+							new double[] {f.getOp1().getY()+y,f.getOp2().getY()+y,f.getOp3().getY()+y},
+							3);
+				}
+			return true ;
+		}else {
+			for (Face f : m.getFaces()) {
+				if(cpt==1) {
+					System.out.println("polygon"+ cpt+" "+f.getOp1().toString());
+				}
+				cpt++;
+				gc.strokePolygon(	new double[] {f.getOp1().getX()+x,f.getOp2().getX()+x,f.getOp3().getX()+x},
+									new double[] {f.getOp1().getY()+y,f.getOp2().getY()+y,f.getOp3().getY()+y},
+									3);
+				}
+			return false;
+		}
+			
+
 	}
 	
 	private void zoom(MouseEvent e, Model m) {
@@ -145,7 +194,7 @@ public class Display2D implements Observer{
 		m.setFaces(polygon);
 	}
 
-	public void affichage (ArrayList<Face> faces){
+	public boolean affichageDefaut (ArrayList<Face> faces){
 		gc.clearRect(0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
 		gc.setFill(Color.RED);
 		int cpt=1;
@@ -164,14 +213,14 @@ public class Display2D implements Observer{
 							new double[] {f.getOp1().getY()+y,f.getOp2().getY()+y,f.getOp3().getY()+y},
 							3);
 		}
-		
+		return true;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public void update(Observable o, Object arg) {
 		ArrayList<Face> arg2 = (ArrayList<Face>)arg;
-		affichage(arg2);
+		affichageDefaut(arg2);
 		
 	}
 
