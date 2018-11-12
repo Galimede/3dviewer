@@ -57,6 +57,16 @@ public class ControllerIHM implements Observer {
 	@FXML
 	Button rotationIcone;
 	@FXML
+	Button rotationH;
+	@FXML
+	Button rotationB;
+	@FXML
+	Button rotationG;
+	@FXML
+	Button rotationD;
+	@FXML
+	Button rotationO;
+	@FXML
 	Canvas canvas;
 
 	/**
@@ -93,6 +103,8 @@ public class ControllerIHM implements Observer {
 			afficheCanvas(pr1.getFaces());
 		}
 	}
+	
+	// Translation
 	
 	/**
 	 * Pr�paration de la translation Gauche et translation
@@ -159,6 +171,7 @@ public class ControllerIHM implements Observer {
 		m.setFaces(polygon);
 	}
 
+	// Homothethie
 	
 	/**
 	 * pr�paration de l'homothethie <<plus>>
@@ -190,11 +203,33 @@ public class ControllerIHM implements Observer {
 		}
 		m.setFaces(polygon);
 	}
+	
+	// rotation
+	
+	public void rotationHaute(ActionEvent e) {
+		
+	}
+	
+	public void rotationBasse(ActionEvent e) {
+		
+	}
+	
+	public void rotationGauche(ActionEvent e) {
+		
+	}
+	
+	public void rotationDroite(ActionEvent e) {
+		
+	}
+	
+	public void rotationOrigine(ActionEvent e) {
+		
+	}
 
 	/**
 	 * Effectue la rotation
 	 */
-	public void rotation(ActionEvent e) {
+	public void rotation() {
 		ArrayList<Face> polygon= m.getFaces();
 		double x= Math.PI/4.0;
 		double y=0.0;

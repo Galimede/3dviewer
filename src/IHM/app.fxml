@@ -25,14 +25,49 @@
                   <Font size="25.0" />
                </font>
             </Label>
-            <Button fx:id="rotationIcone" mnemonicParsing="false" onAction="#rotation" text="⟳" textFill="WHITE">
-               <padding>
-                  <Insets bottom="50.0" top="5.0" />
-               </padding>
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
+            <BorderPane fx:id="rotationPane" prefHeight="113.0" prefWidth="131.0">
+               <bottom>
+                  <Button fx:id="rotationB" mnemonicParsing="false" onAction="#rotationBasse" text="↓" textFill="WHITE" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Button>
+               </bottom>
+               <center>
+                  <Button fx:id="rotationO" mnemonicParsing="false" onAction="#rotationOrigine" text="⭘" textFill="WHITE" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <BorderPane.margin>
+                        <Insets />
+                     </BorderPane.margin>
+                  </Button>
+               </center>
+               <left>
+                  <Button fx:id="rotationG" mnemonicParsing="false" onAction="#rotationGauche" text="←" textFill="WHITE" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Button>
+               </left>
+               <right>
+                  <Button fx:id="rotationD" mnemonicParsing="false" onAction="#rotationDroite" text="→" textFill="WHITE" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Button>
+               </right>
+               <top>
+                  <Button fx:id="rotationH" mnemonicParsing="false" onAction="#rotationHaute" text="↑" textFill="WHITE" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Button>
+               </top>
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" />
+               </VBox.margin>
+            </BorderPane>
             <Label text="Translation" textFill="WHITE">
                <font>
                   <Font size="25.0" />

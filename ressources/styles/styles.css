@@ -1,30 +1,28 @@
-#translationPane {
+#translationPane, #rotationPane {
 	-fx-border: groove;
 	-fx-border-color: white;
 }
 
-#rotationIcone {
- -fx-background-color: Transparent;
-}
 
-#centerArrow {
+
+#centerArrow, #rotationO {
 	-fx-background-color: Transparent;
 }
 
-#leftArrowTranslation {
+#leftArrowTranslation, #rotationG {
 	-fx-background-color: Transparent;
 }
 
-#rightArrowTranslation {
+#rightArrowTranslation, #rotationD {
 	-fx-background-color: Transparent;
 
 }
 
-#upArrowTranslation {
+#upArrowTranslation, #rotationH {
 	-fx-background-color: Transparent;
 }
 
-#downArrowTranslation {
+#downArrowTranslation, #rotationB {
 	-fx-background-color: Transparent;
 }
 
