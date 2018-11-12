@@ -53,7 +53,7 @@ public class Display2D implements Observer{
 		HBox h= new HBox();
 		Label zoom = new Label("Zoom");
 		//truc ajoutés pour laffichages des segments et faces
-		affDefaut = new Button ("Defaut");
+		affDefaut = new Button ("Afficher Defaut");
 		affFaces = new Button ("Afficher Faces");
 		affDefaut.setOnMousePressed(e -> faceAffichées =affichageDefaut(modele.getFaces()));
 		affFaces.setOnMousePressed(e -> faceAffichées = afficherFaces(e,faceAffichées,modele));
