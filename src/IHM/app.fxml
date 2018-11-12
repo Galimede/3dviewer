@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Button?>
@@ -10,9 +16,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@../../ressources/styles/styles.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IHM.ControllerIHM">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1680.0" stylesheets="@../../ressources/styles/styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IHM.ControllerIHM">
    <children>
-      <VBox alignment="CENTER" layoutX="1665.0" prefHeight="1080.0" prefWidth="255.0" style="-fx-background-color: black;">
+      <VBox alignment="CENTER" layoutX="1385.0" prefHeight="900.0" prefWidth="295.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1385.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label text="Rotation" textFill="WHITE">
                <font>
@@ -101,7 +107,7 @@
                   <Insets bottom="2.0" top="10.0" />
                </VBox.margin>
             </Button>
-            <Label text="Dernier fichier ouvert : " textFill="WHITE">
+            <Label text="Dernier fichier  : " textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>
@@ -113,6 +119,6 @@
             </Button>
          </children>
       </VBox>
-      <Canvas fx:id="canvas" height="1080.0" width="1666.0" />
+      <Canvas fx:id="canvas" height="1080.0" width="1386.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="294.0" AnchorPane.topAnchor="0.0" />
    </children>
 </AnchorPane>

@@ -19,7 +19,7 @@ public class Launcher extends Application {
 
 	public void start(Stage stage) throws IOException {
 
-		//Taille par défaut de la fenêtre
+		//Taille par dï¿½faut de la fenï¿½tre
 		Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 		double width = screenSize.getWidth();
 		double height = screenSize.getHeight();

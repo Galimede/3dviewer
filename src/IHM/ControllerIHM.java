@@ -1,5 +1,6 @@
 package IHM;
 
+import java.awt.Dimension;
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
@@ -26,7 +27,7 @@ import tools.PlyReader;
 /**
  * 
  * @author Mathieu DEGAND - 11/02/2018
- * Cette classe contrôle l'application FXML et ses différents composants
+ * Cette classe contrï¿½le l'application FXML et ses diffï¿½rents composants
  */
 public class ControllerIHM implements Observer {
 
@@ -37,7 +38,8 @@ public class ControllerIHM implements Observer {
 	int last = 0;
 	double rapport = 0;
 	PlyReader pr1;
-
+	Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+	
 	@FXML
 	Button leftArrowTranslation;
 	@FXML
@@ -58,7 +60,7 @@ public class ControllerIHM implements Observer {
 	Canvas canvas;
 
 	/**
-	 * Permet d'ouvrir un modele grâce au bouton ouvrir
+	 * Permet d'ouvrir un modele grï¿½ce au bouton ouvrir
 	 */
 	public void openModel(ActionEvent e) {
 		File modelePLY = fileChooser.showOpenDialog(new Stage());
@@ -93,7 +95,7 @@ public class ControllerIHM implements Observer {
 	}
 	
 	/**
-	 * Préparation de la translation Gauche et translation
+	 * Prï¿½paration de la translation Gauche et translation
 	 */
 	public void translationG(ActionEvent e) {
 		ArrayList<Face> polygon= m.getFaces();
@@ -103,7 +105,7 @@ public class ControllerIHM implements Observer {
 	}
 
 	/**
-	 * Préparation de la translation Gauche et translation
+	 * Prï¿½paration de la translation Gauche et translation
 	 */
 	public void translationD(ActionEvent e) {
 		ArrayList<Face> polygon= m.getFaces();
@@ -113,7 +115,7 @@ public class ControllerIHM implements Observer {
 	}
 
 	/**
-	 * Préparation de la translation Gauche et translation
+	 * Prï¿½paration de la translation Gauche et translation
 	 */
 	public void translationH(ActionEvent e) {
 		ArrayList<Face> polygon= m.getFaces();
@@ -123,7 +125,7 @@ public class ControllerIHM implements Observer {
 	}
 	
 	/**
-	 * Préparation de la translation Gauche et translation
+	 * Prï¿½paration de la translation Gauche et translation
 	 */
 	public void translationB(ActionEvent e) {
 		ArrayList<Face> polygon= m.getFaces();
@@ -159,7 +161,7 @@ public class ControllerIHM implements Observer {
 
 	
 	/**
-	 * préparation de l'homothethie <<plus>>
+	 * prï¿½paration de l'homothethie <<plus>>
 	 */
 	public void homothethiePlus(ActionEvent e) {
 		rapport = 1.2;
@@ -167,7 +169,7 @@ public class ControllerIHM implements Observer {
 	}
 
 	/**
-	 * préparation de l'homothethie <<moins>>
+	 * prï¿½paration de l'homothethie <<moins>>
 	 */
 	public void homothethieMoins(ActionEvent e) {
 		rapport = 0.8;
@@ -217,8 +219,8 @@ public class ControllerIHM implements Observer {
 		gc.clearRect(0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
 		gc.setFill(Color.RED);
 		int cpt=1;
-		double x=1666.0/2;
-		double y= 1080.0/2;
+		double x=screenSize.getWidth()/2;
+		double y=screenSize.getHeight()/2;
 		//gc.fillRect(0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
 		for (Face f : faces) {
 			if(cpt==1) {
