@@ -15,6 +15,7 @@ import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
@@ -68,6 +69,12 @@ public class ControllerIHM implements Observer {
 	Button rotationO;
 	@FXML
 	Canvas canvas;
+	@FXML
+	RadioButton radioDefaut;
+	@FXML
+	RadioButton radioFace;
+	@FXML
+	RadioButton radioSegment;
 
 	/**
 	 * Permet d'ouvrir un modele gr�ce au bouton ouvrir
@@ -306,6 +313,21 @@ public class ControllerIHM implements Observer {
 		}
 
 	}
+	
+	// Affichage du modèle sous différentes façons
+	
+	public void afficheDefaut(ActionEvent e) {
+
+	}
+
+	public void afficheFace(ActionEvent e) {
+
+	}
+
+	public void afficheSegment(ActionEvent e) {
+
+	}
+
 
 	
 	private static String getFileExtension(File file) {
@@ -317,9 +339,5 @@ public class ControllerIHM implements Observer {
 		ArrayList<Face> arg2 = (ArrayList<Face>)arg1;
 		afficheCanvas(arg2);
 	}
-
-
-
-
-
+	
 }
