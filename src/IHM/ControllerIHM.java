@@ -316,15 +316,15 @@ public class ControllerIHM implements Observer {
 	
 	// Affichage du modèle sous différentes façons
 	
-	public void afficheDefaut(ActionEvent e) {
+	public void affichageDefaut(ActionEvent e) {
 
 	}
 
-	public void afficheFace(ActionEvent e) {
+	public void affichageFace(ActionEvent e) {
 
 	}
 
-	public void afficheSegment(ActionEvent e) {
+	public void affichageSegment(ActionEvent e) {
 
 	}
 
