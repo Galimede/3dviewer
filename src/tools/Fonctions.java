@@ -102,5 +102,11 @@ public class Fonctions {
 		rotation = multiplier(rotation, rX);  
 		return multiplier(rotation,point);
 	}
+	public static double[][]eclairage(){
+		return null;
+	}
+	public static double[][]lissage(){
+		return null;
+	}
 }
 
