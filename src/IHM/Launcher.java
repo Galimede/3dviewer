@@ -30,7 +30,6 @@ public class Launcher extends Application {
 		Parent root = loader.load();
 		
 		
-		
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 		stage.setTitle("IHM");

@@ -314,7 +314,7 @@ public class ControllerIHM implements Observer {
 
 	}
 	
-	// Affichage du modèle sous différentes façons
+	// Affichage du modèle sous différentes formes
 	
 	public void affichageDefaut(ActionEvent e) {
 
@@ -327,7 +327,6 @@ public class ControllerIHM implements Observer {
 	public void affichageSegment(ActionEvent e) {
 
 	}
-
 
 	
 	private static String getFileExtension(File file) {
