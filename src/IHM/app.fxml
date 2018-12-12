@@ -34,7 +34,7 @@
                   </Button>
                </bottom>
                <center>
-                  <Button fx:id="rotationO" mnemonicParsing="false" onAction="#rotationOrigine" text="⭘" textFill="WHITE" BorderPane.alignment="CENTER">
+                  <Button fx:id="rotationO" mnemonicParsing="false" onAction="#rotationOrigine" text="◯" textFill="WHITE" BorderPane.alignment="CENTER">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -75,7 +75,7 @@
             </Label>
             <BorderPane fx:id="translationPane" prefHeight="113.0" prefWidth="131.0">
                <center>
-                  <Button fx:id="centerArrow" mnemonicParsing="false" onAction="#translationOrigine" text="⭘" textFill="WHITE" BorderPane.alignment="CENTER">
+                  <Button fx:id="centerArrow" mnemonicParsing="false" onAction="#translationOrigine" text="◯" textFill="WHITE" BorderPane.alignment="CENTER">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -137,9 +137,25 @@
                   <Button fx:id="zoomPlus" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#homothethiePlus" text="+" />
                </children>
             </HBox>
-            <VBox alignment="CENTER" prefHeight="123.0" prefWidth="295.0">
+            <Label text="Affichage" textFill="WHITE">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <VBox fx:id="affichagePane" alignment="CENTER" prefHeight="123.0" prefWidth="295.0">
                <children>
-                  <RadioButton fx:id="radioDefaut" mnemonicParsing="false" onAction="#affichageDefaut" prefHeight="32.0" prefWidth="127.0" text="Defaut" textFill="WHITE">
+                  <RadioButton fx:id="radioDefaut" mnemonicParsing="false" onAction="#affichageDefaut" prefHeight="32.0" prefWidth="127.0" selected="true" text="Defaut" textFill="WHITE">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="5.0" />
+                     </padding>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="affichageGroup" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="radioFace" mnemonicParsing="false" onAction="#affichageFace" prefHeight="32.0" prefWidth="127.0" text="Face" textFill="WHITE" toggleGroup="$affichageGroup">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -147,24 +163,27 @@
                         <Insets bottom="5.0" />
                      </padding>
                   </RadioButton>
-                  <RadioButton fx:id="radioFace" mnemonicParsing="false" onAction="#affichageFace" prefHeight="32.0" prefWidth="127.0" text="Face" textFill="WHITE">
+                  <RadioButton fx:id="radioSegment" layoutX="116.0" layoutY="74.0" mnemonicParsing="false" onAction="#affichageSegment" prefHeight="32.0" prefWidth="127.0" text="Segment" textFill="WHITE" toggleGroup="$affichageGroup">
                      <font>
                         <Font size="20.0" />
                      </font>
                      <padding>
                         <Insets bottom="5.0" />
                      </padding>
-                  </RadioButton>
-                  <RadioButton fx:id="radioSegment" layoutX="116.0" layoutY="74.0" mnemonicParsing="false" onAction="#affichageSegment" prefHeight="32.0" prefWidth="127.0" text="Segment" textFill="WHITE">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
                   </RadioButton>
                </children>
                <VBox.margin>
-                  <Insets />
+                  <Insets left="5.0" right="5.0" />
                </VBox.margin>
             </VBox>
+            <Button fx:id="modeAvance" mnemonicParsing="false" text="Mode Avancé">
+               <padding>
+                  <Insets bottom="5.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Button>
             <Button fx:id="ouvrir" alignment="CENTER" mnemonicParsing="false" onAction="#openModel" text="Ouvrir">
                <VBox.margin>
                   <Insets bottom="2.0" top="10.0" />
