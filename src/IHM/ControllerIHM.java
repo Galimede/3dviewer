@@ -215,10 +215,13 @@ public class ControllerIHM implements Observer {
 		m.setFaces(polygon);
 	}
 	
+
+	// Rotation 
+	
 	public void rotationOrigine(ActionEvent e) {
 		
 	}
-
+	
 	/**
 	 * Effectue la rotation
 	 */
