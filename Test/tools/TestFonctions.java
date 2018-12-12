@@ -51,6 +51,7 @@ class TestFonctions {
 				{24,24,24,24,32,32,32},
 				{1,1,1,1,1,1,1}};	
 		assertArrayEquals(res, Fonctions.homothetie(point, k));
+		assertEquals(null, Fonctions.homothetie(null, k));
 
 	}
 
