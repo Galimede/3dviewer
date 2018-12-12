@@ -38,8 +38,10 @@ public class ControllerIHM implements Observer {
 	Model m;
 	int last = 0;
 	double rapport = 0;
+	boolean affichageInitialise=false;
 	PlyReader pr1;
 	Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+	
 	
 	@FXML
 	Button leftArrowTranslation;
@@ -75,6 +77,8 @@ public class ControllerIHM implements Observer {
 	RadioButton radioFace;
 	@FXML
 	RadioButton radioSegment;
+	
+	GraphicsContext gc;
 
 	/**
 	 * Permet d'ouvrir un modele gr�ce au bouton ouvrir
@@ -292,9 +296,13 @@ public class ControllerIHM implements Observer {
 	 * Affiche le modele
 	 */
 	private void afficheCanvas(ArrayList<Face> faces) {
-		GraphicsContext gc = canvas.getGraphicsContext2D();
+		gc = canvas.getGraphicsContext2D();
+		if(!affichageInitialise) {
+			gc.setFill(Color.RED);
+			gc.setStroke(Color.BLACK);
+			affichageInitialise=true;
+		}
 		gc.clearRect(0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
-		gc.setFill(Color.RED);
 		int cpt=1;
 		double x=screenSize.getWidth()/2;
 		double y=screenSize.getHeight()/2;
@@ -316,17 +324,26 @@ public class ControllerIHM implements Observer {
 	
 	// Affichage du modèle sous différentes formes
 	
-	public void affichageDefaut(ActionEvent e) {
 
+	public void affichageDefaut(ActionEvent e) {
+		gc.setFill(Color.RED);
+		gc.setStroke(Color.BLACK);
+		afficheCanvas(m.getFaces());
 	}
 
 	public void affichageFace(ActionEvent e) {
-
+		gc.setFill(Color.RED);
+		gc.setStroke(Color.TRANSPARENT);
+		afficheCanvas(m.getFaces());
 	}
 
 	public void affichageSegment(ActionEvent e) {
-
+		gc.setFill(Color.TRANSPARENT);
+		gc.setStroke(Color.BLACK);
+		afficheCanvas(m.getFaces());
 	}
+
+
 
 	
 	private static String getFileExtension(File file) {
