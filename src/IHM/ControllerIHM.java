@@ -215,47 +215,6 @@ public class ControllerIHM implements Observer {
 		m.setFaces(polygon);
 	}
 	
-	// rotation
-	
-	public void rotationHaute(ActionEvent e) {
-		ArrayList<Face> polygon= m.getFaces();
-		double x=0.0;
-		double y=0.0;
-		double z=0.0;
-		if(e.getSource().equals(rotationH)) {
-			x= Math.PI/4.0;
-		}
-		else if(e.getSource().equals(rotationB)) {
-			x= -Math.PI/4.0;
-		}
-		else if(e.getSource().equals(rotationG)) {
-			y= Math.PI/4.0;
-		}
-		else {
-			y= -Math.PI/4.0;
-		}
-		Face ftmp;
-		for(int i=0;i<polygon.size();i++) {
-			ftmp=new Face(	new Point(Fonctions.rotation(polygon.get(i).getP1(),x,y,z)),
-							new Point(Fonctions.rotation(polygon.get(i).getP2(),x,y,z)),
-							new Point(Fonctions.rotation(polygon.get(i).getP3(),x,y,z)));
-			polygon.set(i,ftmp);
-		}
-		m.setFaces(polygon);
-	}
-	
-	/*public void rotationBasse(ActionEvent e) {
-		
-	}
-	
-	public void rotationGauche(ActionEvent e) {
-		
-	}
-	
-	public void rotationDroite(ActionEvent e) {
-		
-	}*/
-	
 	public void rotationOrigine(ActionEvent e) {
 		
 	}
