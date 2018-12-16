@@ -10,8 +10,11 @@ import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
@@ -19,7 +22,9 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import main.Face;
 import main.Model;
 import main.Point;
@@ -77,6 +82,8 @@ public class ControllerIHM implements Observer {
 	RadioButton radioFace;
 	@FXML
 	RadioButton radioSegment;
+	@FXML
+	Button modeAvance;
 	
 	GraphicsContext gc;
 
@@ -303,6 +310,23 @@ public class ControllerIHM implements Observer {
 		gc.setFill(Color.TRANSPARENT);
 		gc.setStroke(Color.BLACK);
 		afficheCanvas(m.getFaces());
+	}
+	
+	// Permet l'affichage du mode avancé dans une nouvelle fenetre
+	
+	public void ouvreModeAvance(ActionEvent e) {
+		 try{
+	            FXMLLoader fxmlLoader = new FXMLLoader();
+	            fxmlLoader.setLocation(getClass().getResource("modeAvance.fxml"));
+	            Parent root1 = (Parent) fxmlLoader.load();
+	            Stage stage = new Stage();
+	            stage.initModality(Modality.APPLICATION_MODAL);
+	            stage.setTitle("ABC");
+	            stage.setScene(new Scene(root1));  
+	            stage.show();
+	          } catch(Exception exception) {
+	        	  System.out.println("Erreur lors de l'ouverture: " + exception.getMessage());
+	          }
 	}
 
 
