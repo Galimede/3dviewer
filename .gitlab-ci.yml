@@ -1,0 +1,9 @@
+image: mjalas/javafx
+
+build:
+  script: "cd src && javac IHM/Launcher.java"
+  
+test:
+  script:
+    - "cd Test && javac tools/*.java"
+    
