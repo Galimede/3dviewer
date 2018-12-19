@@ -1,3 +1,5 @@
+[![pipeline status](https://git-iut.univ-lille1.fr/degandm/ProjetMode2018-M3/badges/Develop/pipeline.svg)](https://git-iut.univ-lille1.fr/degandm/ProjetMode2018-M3/commits/Develop)
+[![coverage report](https://git-iut.univ-lille1.fr/degandm/ProjetMode2018-M3/badges/Develop/coverage.svg)](https://git-iut.univ-lille1.fr/degandm/ProjetMode2018-M3/commits/Develop)
 # ProjetMode2018-M3
 
 > Le but du projet est de réaliser un logiciel pour la gestion d’une bibliothèque de modèeles 3D pour un FabLab.
