@@ -7,7 +7,7 @@ public class Model extends Observable{
 	private ArrayList<Point> points=new ArrayList<>();
 	private ArrayList<Face> faces=new ArrayList<>();
 	/**
-	 * @param segments
+	 * Construit un model a partir d'une liste de faces et de point
 	 * @param points
 	 * @param faces
 	 */
@@ -16,35 +16,33 @@ public class Model extends Observable{
 		this.faces = faces;
 	}
 	/**
-	 * @return the points
+	 * Renvoie la liste des Points du model
+	 * @return une ArrayList de points
 	 */
 	public ArrayList<Point> getPoints() {
 		return points;
 	}
 	/**
-	 * @return the faces
+	 * Renvoie la liste des faces du model
+	 * @return une ArrayList de faces
 	 */
 	public ArrayList<Face> getFaces() {
 		return faces;
 	}
-	
-	public void disp() {
-		
-	}
 	/**
-	 * @param points the points to set
+	 * Attribue une liste de points au model
+	 * @param points La liste des points a attribuer au model
 	 */
 	public void setPoints(ArrayList<Point> points) {
 		this.points = points;
 	}
 	/**
-	 * @param faces the faces to set
+	 * Attribue une liste de faces au model
+	 * @param faces La liste de faces a attribuer au model
 	 */
 	public void setFaces(ArrayList<Face> faces) {
 		this.faces = faces;
 		setChanged();
 		notifyObservers(this.faces);
 	}
-	
-	
 }
