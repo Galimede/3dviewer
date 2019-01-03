@@ -10,12 +10,9 @@ import main.Point;
 /**
  * 
  * @author dejonghg
- *	La classe PlyReader sert à lire les fichiers .ply 
+ *	La classe PlyReader sert a�lire les fichiers .ply 
  */
 public class PlyReader {
-	
-	
-	
 	private ArrayList<Point> points=new ArrayList<>();
 	private ArrayList<Face> faces=new ArrayList<>();
 	private int nbPoints;
@@ -24,21 +21,23 @@ public class PlyReader {
 	private BufferedReader br;
 
 	/**
-	 * @return Renvoie l'ArrayList de Point crées à la suite de la lecture du fichiers 
+	 * Renvoie la liste des points contenu dans le fichier .ply
+	 * @return Une ArrayList de Point
 	 */
 	public ArrayList<Point> getPoints() {
 		return points;
 	}
 
 	/**
-	 * @return Renvoie l'ArrayList de Face crées à la suite de la lecture du fichiers
+	 * Renvir la liste des faces contenu dans le fichier .ply
+	 * @return Une ArrayList de Face
 	 */
 	public ArrayList<Face> getFaces() {
 		return faces;
 	}
 	/**
 	 * Initialise un PlyReader et en lance la lecture
-	 * @param path L'argument path doit être un chemin relatif ou absolu menant à un fichier .ply
+	 * @param path L'argument path doit etre un chemin relatif ou absolu menant a� un fichier .ply
 	 */
 	public PlyReader(String path){
 		String test=path.substring(path.length()-4,path.length());
@@ -51,12 +50,10 @@ public class PlyReader {
 				e.printStackTrace();
 			} 
 		}else{
-			System.out.println("Une erreur a été détecté le fichier n'est pas reconnu en tant que .ply");
+			System.out.println("Une erreur a ete detecte le fichier n'est pas reconnu en tant que .ply");
 		}
 	}
-	/**
-	 * Méthode privée à PlyReader qui réalise la lecture du fichier et initialise les points et les faces
-	 */
+
 	private void lecture(){
 		String actu=null;
 		try {
@@ -107,14 +104,7 @@ public class PlyReader {
 		}
 
 	}
-
-/**
- * Méthode privée qui renvoie les 3 points correspondant à une face
- * @param actu "actu" est la ligne actuelle du buffer 
- * @return les 3 points sous forme de 
- */
 	private double[] getPointFace(String actu) {
-	//	System.out.println(actu);
 		String tmps=actu.substring(2,actu.length());
 		double res[]=new double[3];
 		int idx=0;
@@ -129,12 +119,6 @@ public class PlyReader {
 		res[idx]=Double.parseDouble(tmps.substring(idxBeg,tmps.length()));
 		return res;
 	}
-
-/**
- * Sert a récuperer les 3 coordonnées de la ligne actuelle et les renvoie
- * @param actu est la ligne actuelle du buffer
- * @return un tableua de double avec les 3 coordonnes d'un futur point
- */
 	private double[] getCoorPoint(String actu) {
 		double res[]=new double[3];
 		int cptSpace=0;
@@ -151,17 +135,11 @@ public class PlyReader {
 		res[idx]=Double.parseDouble(actu.substring(idxBeg,actu.length()));
 		return res;
 	}
-/**
- * Méthode privée qui récupere la valeur correspondant au nombre de face et de point
- * @param s est une ligne de la forme "element vertex ***" ou "element face ***"
- * @return un int qui représente la valeur associé à la ligne
- */
 	private int getNumberValue(String s) {
 		String res=s;
 		while(res.charAt(0)>'9'||res.charAt(0)==' '){
 			res=res.substring(1,res.length());
 		}
-		//System.out.println(res);
 		return Integer.parseInt(res);
 	}
 }
