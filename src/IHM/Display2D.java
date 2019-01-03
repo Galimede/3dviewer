@@ -33,10 +33,10 @@ public class Display2D implements Observer{
 	Button affFaces;
 	Button affSegments;
 	Button affDefaut;
-	boolean faceAffichées;
+	boolean faceAffichees;
 	
 	public Display2D(Model modele) {
-		faceAffichées = true;
+		faceAffichees = true;
 		modele.addObserver(this);
 		Stage primaryStage = new Stage();
 		double hScreen=Toolkit.getDefaultToolkit().getScreenSize().getHeight()-85;
@@ -55,8 +55,8 @@ public class Display2D implements Observer{
 		//truc ajoutés pour laffichages des segments et faces
 		affDefaut = new Button ("Afficher Defaut");
 		affFaces = new Button ("Afficher Faces");
-		affDefaut.setOnMousePressed(e -> faceAffichées =affichageDefaut(modele.getFaces()));
-		affFaces.setOnMousePressed(e -> faceAffichées = afficherFaces(e,faceAffichées,modele));
+		affDefaut.setOnMousePressed(e -> faceAffichees =affichageDefaut(modele.getFaces()));
+		affFaces.setOnMousePressed(e -> faceAffichees = afficherFaces(e,faceAffichees,modele));
 		affSegments = new Button ("Afficher Segments");
 		
 		zoomPlus = new Button("+");
@@ -87,12 +87,12 @@ public class Display2D implements Observer{
 		
 	}
 	
-	private boolean afficherFaces(MouseEvent e, boolean affichées, Model m ) {
+	private boolean afficherFaces(MouseEvent e, boolean affichees, Model m ) {
 		gc.clearRect(0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
 		int cpt=1;
 		double x=700.0;
 		double y= 400.0;
-		if (!affichées) {
+		if (!affichees) {
 			gc.setFill(Color.RED);
 			for (Face f : m.getFaces()) {
 				if(cpt==1) {
