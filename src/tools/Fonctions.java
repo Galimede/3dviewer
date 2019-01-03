@@ -1,53 +1,64 @@
 package tools;
 
 public class Fonctions {
-	public static double[][] multiplier(double[][] A, double[][] B){
-		double[][] AB;
-		int l, c;
-		if (A[0].length != B.length) {
+	/**
+	 * Fonction qui multiplie deux matrices entres elles
+	 * @param matriceA La premiere des matrices que l'on souhaite multiplier
+	 * @param matriceB La deuxi�me matrice que l'on souhaite multiplier
+	 * @return le produit de la matriceA par la matriceB
+	 */
+	public static double[][] multiplier(double[][] matriceA, double[][] matriceB){
+		double[][] produitAB;
+		int lignes, colonnes;
+		if (matriceA==null||matriceB==null||matriceA[0].length != matriceB.length) {
 			return null;
 		}
-		if (A.length * A[0].length < B.length * B[0].length) {
-			l = B.length;
-			c = B[0].length;
+		if (matriceA.length * matriceA[0].length < matriceB.length * matriceB[0].length) {
+			lignes = matriceB.length;
+			colonnes = matriceB[0].length;
 		} else {
-			l = A.length;
-			c = A[0].length;
+			lignes = matriceA.length;
+			colonnes = matriceA[0].length;
 		}
-		AB = new double[l][c];
-		l = 0;
-		for (int i = 0; i < A.length; i++) {
-			c = 0;
-			for (int n = 0; n < B[0].length; n++) {
+		produitAB = new double[lignes][colonnes];
+		lignes = 0;
+		for (int i = 0; i < matriceA.length; i++) {
+			colonnes = 0;
+			for (int n = 0; n < matriceB[0].length; n++) {
 				double calcul = 0;
-				for (int m = 0; m < B.length; m++) {
-					calcul += A[i][m] * B[m][n];
+				for (int m = 0; m < matriceB.length; m++) {
+					calcul += matriceA[i][m] * matriceB[m][n];
 				}
-				AB[l][c] =  (calcul/1);
-				c++;
+				produitAB[lignes][colonnes] =  (calcul/1);
+				colonnes++;
 			}
-			l++;
+			lignes++;
 		}
-		return AB;
+		return produitAB;
 	}
 
-
+	/**
+	 * Fonction qui r�alise la translation d'un point par un vecteur en 3D
+	 * @param point La matrice du point de taille 4x1
+	 * @param vecteur La matrice du vecteur representant la traslation de taille 3x1
+	 * @return la nouvelle matrice du point apres la translation 
+	 */
 	public static double[][]translation3D(double [][]point,double[]vecteur){
+		if(point==null||vecteur==null||point.length!=4||point[0].length!=1||vecteur.length!=3) {
+			return null;
+		}
 		double [][]matV= {{1.0,0.0,0.0,vecteur[0]},{0.0,1.0,0.0,vecteur[1]},{0.0,0.0,1.0,vecteur[2]},{0.0,0.0,0.0,1.0}};
 		return multiplier(matV,point);
 	}
 
 	/**
-	 *  Retourne l'homothetie 3D de rapport k autour de l'origine
-	 *  @param point
-	 *  		Matrice des points
-	 *  @param rapport 
-	 *  		Rapport utilisé pour l'homothetie
-	 *  @return Un tableau à deux dimensions représentant l'homothétie 3D   
+	 *  Retourne l'homothetie 3D d'un certain rapport passe en parametres autour de l'origine
+	 *  @param point La matrice du point avant homothetie de taille 4x1
+	 *  @param rapport Rapport utilise pour l'homothetie
+	 *  @return La nouvelle matrice du point apres l'homothetie   
 	 */
 	public static double[][] homothetie(double [][]point, double rapport){
-		if(point == null) {
-			System.out.println("Pas de points fournis");
+		if(point==null||rapport==0.0) {
 			return null;
 		}
 		double[][] homothetie = {  
