@@ -11,6 +11,7 @@ public class Fonctions {
 		double[][] produitAB;
 		int lignes, colonnes;
 		if (matriceA==null||matriceB==null||matriceA[0].length != matriceB.length) {
+			System.out.println("Erreur multiplication");
 			return null;
 		}
 		if (matriceA.length * matriceA[0].length < matriceB.length * matriceB[0].length) {
@@ -45,6 +46,7 @@ public class Fonctions {
 	 */
 	public static double[][]translation3D(double [][]point,double[]vecteur){
 		if(point==null||vecteur==null||point.length!=4||point[0].length!=1||vecteur.length!=3) {
+			System.out.println("Erreur translation");
 			return null;
 		}
 		double [][]matV= {{1.0,0.0,0.0,vecteur[0]},{0.0,1.0,0.0,vecteur[1]},{0.0,0.0,1.0,vecteur[2]},{0.0,0.0,0.0,1.0}};
@@ -58,7 +60,8 @@ public class Fonctions {
 	 *  @return La nouvelle matrice du point apres l'homothetie   
 	 */
 	public static double[][] homothetie(double [][]point, double rapport){
-		if(point==null||rapport==0.0) {
+		if(point==null||rapport==0.0||point.length!=4||point[0].length!=1) {
+			System.out.println("Erreur homothetie");
 			return null;
 		}
 		double[][] homothetie = {  
@@ -70,19 +73,19 @@ public class Fonctions {
 		return multiplier(homothetie,point);
 	}
 
-	/** 
-	 * retourne la rotation autour de l'origine
-	 * @param point
-	 * 		  Matrice des points
-	 * @param angleX
-	 * 		  Angle de rotation de Y vers Z (En radians)
-	 * @param angleY
-	 * 		  Angle de rotation de Z vers X (En radians)
-	 * @param angleZ
-	 * 		  Angle de rotation de x vers Y (En radians)
-	 * @return Un tableau à deux dimensions représentant la rotation sur un axe autour de l'origine
+	/**
+	 * R�alistion la rotation 3D  autour du point (0,0)
+	 * @param point La matrice du point avant rotation de taille 4x1
+	 * @param angleX Angle en radians de la rotation sur l'axe des X
+	 * @param angleY Angle en radians de la rotation sur l'axe des Y
+	 * @param angleZ Angle en radians de la rotation sur l'axe des Z
+	 * @return La nouvelle matrice du point apres rotation
 	 */
 	public static double[][] rotation(double[][]point, double angleX, double angleY,  double angleZ) {
+		if(point==null||point.length!=4||point[0].length!=1) {
+			System.out.println("Erreur rotation");
+			return null;
+		}
 		double cosX =Math.cos(Math.toRadians(22.5));
 		double sinX =Math.sin(Math.toRadians(22.5));
 		double zero=0.0;
@@ -112,12 +115,6 @@ public class Fonctions {
 		double[][] rotation = multiplier(rZ, rY);
 		rotation = multiplier(rotation, rX);  
 		return multiplier(rotation,point);
-	}
-	public static double[][]eclairage(){
-		return null;
-	}
-	public static double[][]lissage(){
-		return null;
 	}
 }
 
