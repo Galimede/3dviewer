@@ -16,6 +16,9 @@ import javafx.stage.Stage;
  */
 
 public class Launcher extends Application {
+	/**
+	 * Lance l'affichage fxml
+	 */
 
 	public void start(Stage stage) throws IOException {
 
@@ -37,7 +40,6 @@ public class Launcher extends Application {
 		stage.setWidth(width);
 		stage.setHeight(height);
 		stage.show();
-
 	}
 
 	public static void main(String[] args) {
