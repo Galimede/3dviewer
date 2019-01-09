@@ -17,6 +17,7 @@ import tools.Fonctions;
  */
 public class ControllerAvance implements Runnable {
 
+	private static boolean rotationAutoActive=false;
 	private Thread thread;
 	private Model model;
 	private View view;
