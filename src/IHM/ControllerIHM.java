@@ -18,6 +18,7 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
@@ -87,6 +88,8 @@ public class ControllerIHM implements Observer {
 	Button modeAvance;
 	@FXML
 	Canvas canvasAvance;
+	@FXML
+	CheckBox boxRotaAuto;
 	
 	GraphicsContext gc;
 
@@ -327,7 +330,7 @@ public class ControllerIHM implements Observer {
 	            stage.setTitle("ABC");
 	            stage.setScene(new Scene(root1));  
 	            stage.show();
-	            View v= new View(m,canvasAvance);
+	            View v= new View(m,canvasAvance,boxRotaAuto);
 	          } catch(Exception exception) {
 	        	  System.out.println("Erreur lors de l'ouverture: " + exception.getMessage());
 	          }

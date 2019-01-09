@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
+import javafx.event.ActionEvent;
+import javafx.scene.control.CheckBox;
 import javafx.scene.paint.Color;
 import main.Face;
 import main.Model;
@@ -19,15 +21,25 @@ import tools.Fonctions;
 public class ControllerAvance implements Runnable {
 
 	private static boolean rotationAutoActive=false;
-	private Thread thread;
-	private Model model;
+	/*private Thread thread;
+	private Model model;*/
 	private View view;
+	private CheckBox cb;
 
+	public ControllerAvance(View v, CheckBox cb) {
+		view=v;
+		this.cb=cb;
+		cb.setOnAction(e->rotationActive(e));
+	}
+	
+	private void rotationActive(ActionEvent e) {
+		rotationAutoActive=true;
+	}
 
 	@Override
 	public void run() {
 		while(true) {
-			while(!rotationAutoActive) System.out.println("");
+			while(!rotationAutoActive) System.out.println("test");
 			view.rotation();
 			//model.setFaces(null);
 			try {

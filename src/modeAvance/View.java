@@ -9,6 +9,7 @@ import IHM.ControllerAvance;
 import javafx.application.Application;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.CheckBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import main.Face;
@@ -19,17 +20,19 @@ import tools.Fonctions;
 public class View implements Observer{
 	
 	Model model;
-	private static boolean rotationAutoActive=false;
+	//private static boolean rotationAutoActive=false;
 	private Thread thread;
 	
 	GraphicsContext gc;
 	Canvas canvas;
 	Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 	
-	public View(Model model, Canvas c) {
+	public View(Model model, Canvas c, CheckBox cb) {
 		this.model=model;
 		model.addObserver(this);
 		canvas=c;
+		thread= new Thread(new ControllerAvance(this,cb));
+		thread.start();
 		/*this.controller=controller;
 		controller.addView(this);*/
 	}
