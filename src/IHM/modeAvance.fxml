@@ -8,12 +8,12 @@
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IHM.ControllerAvance">
    <children>
       <Canvas fx:id="canvasAvance" height="475.0" layoutX="-1.0" layoutY="-2.0" width="960.0" />
       <HBox layoutX="-3.0" layoutY="472.0" prefHeight="68.0" prefWidth="967.0" style="-fx-background-color: #2C2F33;">
          <children>
-            <CheckBox fx:id="boxRotaAuto" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Rotation Automatique" textFill="WHITE">
+            <CheckBox fx:id="boxRotaAuto" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#rotationActive" text="Rotation Automatique" textFill="WHITE">
                <HBox.margin>
                   <Insets left="380.0" top="20.0" />
                </HBox.margin>

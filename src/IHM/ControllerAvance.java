@@ -5,6 +5,8 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.control.CheckBox;
 import javafx.scene.paint.Color;
 import main.Face;
@@ -24,16 +26,18 @@ public class ControllerAvance implements Runnable {
 	/*private Thread thread;
 	private Model model;*/
 	private View view;
-	private CheckBox cb;
+	@FXML
+	private CheckBox boxRotaAuto;
+	@FXML
+	public Canvas canvasAvance; 
 
-	public ControllerAvance(View v, CheckBox cb) {
+	public ControllerAvance(View v) {
 		view=v;
-		this.cb=cb;
-		cb.setOnAction(e->rotationActive(e));
+		//cb.setOnAction(e->rotationActive(e));
 	}
 	
-	private void rotationActive(ActionEvent e) {
-		rotationAutoActive=true;
+	public void rotationActive(ActionEvent e) {
+		//rotationAutoActive=true;
 	}
 
 	@Override

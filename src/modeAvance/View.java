@@ -24,14 +24,16 @@ public class View implements Observer{
 	private Thread thread;
 	
 	GraphicsContext gc;
-	Canvas canvas;
-	Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 	
-	public View(Model model, Canvas c, CheckBox cb) {
+	Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+	ControllerAvance ca;
+
+	
+	public View(Model model) {
 		this.model=model;
 		model.addObserver(this);
-		canvas=c;
-		thread= new Thread(new ControllerAvance(this,cb));
+		ca= new ControllerAvance(this);
+		thread= new Thread(ca);
 		thread.start();
 		/*this.controller=controller;
 		controller.addView(this);*/
@@ -61,7 +63,7 @@ public class View implements Observer{
 	
 
 	public void affichage(ArrayList<Face> faces) {
-		gc = canvas.getGraphicsContext2D();
+		gc = ca.canvasAvance.getGraphicsContext2D();
 		
 		gc.clearRect(0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
 		int cpt=1;

@@ -330,9 +330,9 @@ public class ControllerIHM implements Observer {
 	            stage.setTitle("ABC");
 	            stage.setScene(new Scene(root1));  
 	            stage.show();
-	            View v= new View(m,canvasAvance,boxRotaAuto);
+	            View v= new View(m);
 	          } catch(Exception exception) {
-	        	  System.out.println("Erreur lors de l'ouverture: " + exception.getMessage());
+	        	  exception.printStackTrace();
 	          }
 	}
 
