@@ -4,7 +4,7 @@ public class Fonctions {
 	/**
 	 * Fonction qui multiplie deux matrices entres elles
 	 * @param matriceA La premiere des matrices que l'on souhaite multiplier
-	 * @param matriceB La deuxième matrice que l'on souhaite multiplier
+	 * @param matriceB La deuxiï¿½me matrice que l'on souhaite multiplier
 	 * @return le produit de la matriceA par la matriceB
 	 */
 	public static double[][] multiplier(double[][] matriceA, double[][] matriceB){
@@ -39,13 +39,13 @@ public class Fonctions {
 	}
 
 	/**
-	 * Fonction qui réalise la translation d'un point par un vecteur en 3D
+	 * Fonction qui rï¿½alise la translation d'un point par un vecteur en 3D
 	 * @param point La matrice du point de taille 4x1
 	 * @param vecteur La matrice du vecteur representant la traslation de taille 3x1
 	 * @return la nouvelle matrice du point apres la translation 
 	 */
 	public static double[][]translation3D(double [][]point,double[]vecteur){
-		if(point==null||vecteur==null||point.length!=4||point[0].length!=1||vecteur.length!=3) {
+		if(point==null||vecteur==null||point.length!=4||point[0].length!=4||vecteur.length!=3) {
 			System.out.println("Erreur translation");
 			return null;
 		}
@@ -60,21 +60,19 @@ public class Fonctions {
 	 *  @return La nouvelle matrice du point apres l'homothetie   
 	 */
 	public static double[][] homothetie(double [][]point, double rapport){
-		if(point==null||rapport==0.0||point.length!=4||point[0].length!=1) {
+		if(point==null||rapport==0.0||point.length!=4||point[0].length!=4) {
 			System.out.println("Erreur homothetie");
 			return null;
 		}
-		double[][] homothetie = {  
-				{rapport,0,0,0},
-				{0,rapport,0,0},
-				{0,0,rapport,0},
-				{0,0,0,1}
-		};	
-		return multiplier(homothetie,point);
+		double[][] homothetieRes=point;
+		homothetieRes[0][3]=homothetieRes[0][3]*rapport;
+		homothetieRes[1][3]=homothetieRes[1][3]*rapport;
+		homothetieRes[2][3]=homothetieRes[2][3]*rapport;
+		return homothetieRes;
 	}
 
 	/**
-	 * Réalistion la rotation 3D  autour du point (0,0)
+	 * Rï¿½alistion la rotation 3D  autour du point (0,0)
 	 * @param point La matrice du point avant rotation de taille 4x1
 	 * @param angleX Angle en radians de la rotation sur l'axe des X
 	 * @param angleY Angle en radians de la rotation sur l'axe des Y
@@ -117,4 +115,5 @@ public class Fonctions {
 		return multiplier(rotation,point);
 	}
 }
+
 
