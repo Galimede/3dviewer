@@ -60,10 +60,10 @@ public class Fonctions {
 	 *  @return La nouvelle matrice du point apres l'homothetie   
 	 */
 	public static double[][] homothetie(double [][]point, double rapport){
-		/*if(point==null||rapport==0.0||point.length!=4||point[0].length!=4) {
+		if(point==null||rapport==0.0||point.length!=4||point[0].length!=1) {
 			System.out.println("Erreur homothetie");
 			return null;
-		}*/
+		}
 		double[][] homothetieRes=point;
 		homothetieRes[0][0]=homothetieRes[0][0]*rapport;
 		homothetieRes[1][0]=homothetieRes[1][0]*rapport;
