@@ -22,17 +22,17 @@ import tools.Fonctions;
  */
 public class ControllerAvance implements Runnable {
 
-	private static boolean rotationAutoActive=false;
-	/*private Thread thread;
-	private Model model;*/
+	private static boolean rotationAutoActive=true;
+	/*private Thread thread;*/
+	private Model model;
 	private View view;
 	@FXML
 	private CheckBox boxRotaAuto;
 	@FXML
 	public Canvas canvasAvance; 
 
-	public ControllerAvance(View v) {
-		view=v;
+	public ControllerAvance(Model m) {
+		model=m;
 		//cb.setOnAction(e->rotationActive(e));
 	}
 	
@@ -43,19 +43,20 @@ public class ControllerAvance implements Runnable {
 	@Override
 	public void run() {
 		while(true) {
-			while(!rotationAutoActive) System.out.println("test");
-			view.rotation();
+			//while(!rotationAutoActive) System.out.println("test");
+			rotation();
 			//model.setFaces(null);
 			try {
 				Thread.sleep(500);
 			} catch (InterruptedException e) {
-				e.printStackTrace();
+				Thread.currentThread().interrupt();
+				break;
 			}
 		}
 		
 	}
 	
-	/*public void rotation() {
+	public void rotation() {
 		ArrayList<Face> polygon= model.getFaces();
 		double x= Math.PI/4.0;
 		double y=0.0;
@@ -69,7 +70,7 @@ public class ControllerAvance implements Runnable {
 		}
 		model.setFaces(polygon);
 	}
-	}
+	/*
 	
 	public void addView(View view) {
 		this.view=view;

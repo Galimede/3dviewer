@@ -39,7 +39,8 @@ import tools.PlyReader;
  */
 public class ControllerIHM implements Observer {
 
-	
+	boolean test=true;
+
 	final FileChooser fileChooser = new FileChooser();
 	String cheminModele;
 	Model m;
@@ -48,8 +49,8 @@ public class ControllerIHM implements Observer {
 	boolean affichageInitialise=false;
 	PlyReader pr1;
 	Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-	
-	
+	Thread t;
+
 	@FXML
 	Button leftArrowTranslation;
 	@FXML
@@ -85,12 +86,8 @@ public class ControllerIHM implements Observer {
 	@FXML
 	RadioButton radioSegment;
 	@FXML
-	Button modeAvance;
-	@FXML
-	Canvas canvasAvance;
-	@FXML
 	CheckBox boxRotaAuto;
-	
+
 	GraphicsContext gc;
 
 	/**
@@ -127,9 +124,9 @@ public class ControllerIHM implements Observer {
 			afficheCanvas(pr1.getFaces());
 		}
 	}
-	
+
 	// Translation
-	
+
 	/**
 	 * Pr�paration de la translation Gauche et translation
 	 */
@@ -159,7 +156,7 @@ public class ControllerIHM implements Observer {
 		vecteur[1]= -20.0;
 		translation(polygon,vecteur);
 	}
-	
+
 	/**
 	 * Pr�paration de la translation Gauche et translation
 	 */
@@ -169,7 +166,7 @@ public class ControllerIHM implements Observer {
 		vecteur[1]= 20.0;
 		translation(polygon,vecteur);
 	}
-	
+
 	/**
 	 * Raffiche le modele depuis l'origine
 	 */
@@ -196,7 +193,7 @@ public class ControllerIHM implements Observer {
 	}
 
 	// Homothethie
-	
+
 	/**
 	 * pr�paration de l'homothethie <<plus>>
 	 */
@@ -227,14 +224,14 @@ public class ControllerIHM implements Observer {
 		}
 		m.setFaces(polygon);
 	}
-	
+
 
 	// Rotation 
-	
+
 	public void rotationOrigine(ActionEvent e) {
-		
+
 	}
-	
+
 	/**
 	 * Effectue la rotation
 	 */
@@ -266,7 +263,7 @@ public class ControllerIHM implements Observer {
 		m.setFaces(polygon);
 	}
 
-	
+
 	/**
 	 * Affiche le modele
 	 */
@@ -296,9 +293,9 @@ public class ControllerIHM implements Observer {
 		}
 
 	}
-	
+
 	// Affichage du modèle sous différentes formes
-	
+
 
 	public void affichageDefaut(ActionEvent e) {
 		gc.setFill(Color.RED);
@@ -317,11 +314,13 @@ public class ControllerIHM implements Observer {
 		gc.setStroke(Color.BLACK);
 		afficheCanvas(m.getFaces());
 	}
-	
+
 	// Permet l'affichage du mode avancé dans une nouvelle fenetre
-	
-	public void ouvreModeAvance(ActionEvent e) {
-		 try{
+
+	public void rotationAutoActive(ActionEvent e) {
+		try{	
+			t= new Thread(new ControllerAvance(m));
+			/*ControllerAvance ca= new ControllerAvance(v);
 	            FXMLLoader fxmlLoader = new FXMLLoader();
 	            fxmlLoader.setLocation(getClass().getResource("modeAvance.fxml"));
 	            Parent root1 = (Parent) fxmlLoader.load();
@@ -329,16 +328,39 @@ public class ControllerIHM implements Observer {
 	            stage.initModality(Modality.APPLICATION_MODAL);
 	            stage.setTitle("ABC");
 	            stage.setScene(new Scene(root1));  
-	            stage.show();
-	            View v= new View(m);
-	          } catch(Exception exception) {
-	        	  exception.printStackTrace();
-	          }
+	            stage.show();*/
+			if(boxRotaAuto.isSelected()) {
+				if(!Thread.interrupted()) {
+					t.start();
+				}
+			}
+			else {
+				t.interrupt();
+			}
+		} catch(Exception exception) {
+			exception.printStackTrace();
+		}
+	}
+	
+	private void threadInitialize() {
+		t= new Thread(new ControllerAvance(m));
+	}
+
+	public void ouvreModeAvance () throws InterruptedException{
+		if(test) {
+			threadInitialize();
+			t.start();
+			test=false;
+		}
+		else {
+			t.interrupt();
+			test=true;
+		}
 	}
 
 
 
-	
+
 	private static String getFileExtension(File file) {
 		int dotIndex = file.toString().lastIndexOf('.');
 		return (dotIndex == -1) ? "" : file.toString().substring(dotIndex + 1);
@@ -348,5 +370,5 @@ public class ControllerIHM implements Observer {
 		ArrayList<Face> arg2 = (ArrayList<Face>)arg1;
 		afficheCanvas(arg2);
 	}
-	
+
 }

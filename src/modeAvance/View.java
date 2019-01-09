@@ -21,7 +21,7 @@ public class View implements Observer{
 	
 	Model model;
 	//private static boolean rotationAutoActive=false;
-	private Thread thread;
+	public Thread thread;
 	
 	GraphicsContext gc;
 	
@@ -32,9 +32,9 @@ public class View implements Observer{
 	public View(Model model) {
 		this.model=model;
 		model.addObserver(this);
-		ca= new ControllerAvance(this);
+		//ca= new ControllerAvance(this);
 		thread= new Thread(ca);
-		thread.start();
+		//thread.start();
 		/*this.controller=controller;
 		controller.addView(this);*/
 	}
