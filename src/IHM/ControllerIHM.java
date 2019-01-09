@@ -28,6 +28,7 @@ import javafx.stage.StageStyle;
 import main.Face;
 import main.Model;
 import main.Point;
+import modeAvance.View;
 import tools.Fonctions;
 import tools.PlyReader;
 /**
@@ -84,6 +85,8 @@ public class ControllerIHM implements Observer {
 	RadioButton radioSegment;
 	@FXML
 	Button modeAvance;
+	@FXML
+	Canvas canvasAvance;
 	
 	GraphicsContext gc;
 
@@ -324,6 +327,7 @@ public class ControllerIHM implements Observer {
 	            stage.setTitle("ABC");
 	            stage.setScene(new Scene(root1));  
 	            stage.show();
+	            View v= new View(m,canvasAvance);
 	          } catch(Exception exception) {
 	        	  System.out.println("Erreur lors de l'ouverture: " + exception.getMessage());
 	          }
