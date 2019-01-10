@@ -45,7 +45,7 @@ public class Fonctions {
 	 * @return la nouvelle matrice du point apres la translation 
 	 */
 	public static double[][]translation3D(double [][]point,double[]vecteur){
-		if(point==null||vecteur==null||point.length!=4||point[0].length!=4||vecteur.length!=3) {
+		if(point==null||vecteur==null||point.length!=4||point[0].length!=1||vecteur.length!=3) {
 			System.out.println("Erreur translation");
 			return null;
 		}
