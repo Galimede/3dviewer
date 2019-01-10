@@ -21,6 +21,8 @@ public class PlyReader {
 	private BufferedReader br;
 	private int plusAGauche=-1;
 	private int plusADroite=-1;
+	private int plusEnHaut=-1;
+	private int plusEnBas=-1;
 
 	/**
 	 * Renvoie la liste des points contenu dans le fichier .ply
@@ -94,6 +96,8 @@ public class PlyReader {
 						if(plusAGauche==-1) {
 							plusAGauche=0;
 							plusADroite=0;
+							plusEnHaut=0;
+							plusEnBas=0;
 						}
 						if(points.get(points.size()-1).getX()<points.get(plusAGauche).getX()) {
 							plusAGauche=points.size()-1;
@@ -101,15 +105,21 @@ public class PlyReader {
 						if(points.get(points.size()-1).getX()>points.get(plusADroite).getX()) {
 							plusADroite=points.size()-1;
 						}
+						if(points.get(points.size()-1).getY()>points.get(plusEnHaut).getY()) {
+							plusEnHaut=points.size()-1;
+						}
+						if(points.get(points.size()-1).getY()<points.get(plusEnBas).getY()) {
+							plusEnBas=points.size()-1;
+						}
 						
 					}else {
 						if(!zoomer) {
-							while(points.get(plusADroite).getX()-points.get(plusAGauche).getX()<900) {
-							points=Fonctions.homothetie(points,1.5);
+							while(points.get(plusADroite).getX()-points.get(plusAGauche).getX()<1000&&points.get(plusEnHaut).getY()-points.get(plusEnBas).getY()<1000) {
+							points=Fonctions.homothetie(points,1.2);
 							}
 							zoomer=true;
 							if(points.get(plusADroite).getX()-points.get(plusAGauche).getX()<900) {
-								points=Fonctions.homothetie(points,0.66);
+								points=Fonctions.homothetie(points,0.83);
 							}
 						}
 						tmp=getPointFace(actu);
