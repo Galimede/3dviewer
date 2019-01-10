@@ -114,12 +114,18 @@ public class PlyReader {
 						
 					}else {
 						if(!zoomer) {
-							while(points.get(plusADroite).getX()-points.get(plusAGauche).getX()<650&&points.get(plusEnHaut).getY()-points.get(plusEnBas).getY()<450) {
+							while(points.get(plusADroite).getX()-points.get(plusAGauche).getX()<693&&points.get(plusEnHaut).getY()-points.get(plusEnBas).getY()<500) {
 							points=Fonctions.homothetie(points,1.2);
 							}
 							zoomer=true;
-							while(points.get(plusADroite).getX()-points.get(plusAGauche).getX()>650||points.get(plusEnHaut).getY()-points.get(plusEnBas).getY()>450) {
+							while(points.get(plusADroite).getX()-points.get(plusAGauche).getX()>693||points.get(plusEnHaut).getY()-points.get(plusEnBas).getY()>500) {
 								points=Fonctions.homothetie(points,0.83);
+							}
+							double diffX=points.get(plusADroite).getX()-points.get(plusAGauche).getX();
+							double diffY=points.get(plusEnHaut).getY()-points.get(plusEnBas).getY();
+							for(Point p : points) {
+								points.get(points.indexOf(p)).setX(p.getX()+(693-(diffX/2)));
+								points.get(points.indexOf(p)).setY(p.getY()+(500-(diffY/2)));
 							}
 						}
 						tmp=getPointFace(actu);
