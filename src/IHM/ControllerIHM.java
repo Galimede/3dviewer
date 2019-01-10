@@ -349,7 +349,7 @@ public class ControllerIHM  implements Observer, Runnable  {
 	
 	public void ouvreModeAvance() {
 		
-	}
+	 }
 	
 	@Override
 	public void run() {
