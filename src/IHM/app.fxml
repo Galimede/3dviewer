@@ -211,6 +211,6 @@
             </Button>
          </children>
       </VBox>
-      <Canvas fx:id="canvas" height="900.0" width="1386.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="294.0" AnchorPane.topAnchor="0.0" />
+      <Canvas fx:id="canvas" height="1000.0" width="1386.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="294.0" AnchorPane.topAnchor="0.0" />
    </children>
 </AnchorPane>

@@ -90,6 +90,7 @@ public class ControllerIHM  implements Observer, Runnable  {
 
 	GraphicsContext gc;
 	boolean rota=false;
+	boolean affichageSegment =false;
 
 	/**
 	 * Permet d'ouvrir un modele gr�ce au bouton ouvrir
@@ -238,7 +239,7 @@ public class ControllerIHM  implements Observer, Runnable  {
 	 */
 	public void rotation(ActionEvent e) {
 		ArrayList<Face> polygon= m.getFaces();
-		double x= Math.PI/4.0;
+		double x= Math.PI/2.0;
 		double y=0.0;
 		double z=0.0;
 		System.out.println("test");
@@ -278,40 +279,93 @@ public class ControllerIHM  implements Observer, Runnable  {
 		}
 		gc.clearRect(0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
 		int cpt=1;
-		double x=screenSize.getWidth()/2;
-		double y=screenSize.getHeight()/2;
+		double x=canvas.getWidth()/2;
+		double y=canvas.getHeight()/2;
 		//gc.fillRect(0, 0, gc.getCanvas().getWidth(), gc.getCanvas().getHeight());
 		for (Face f : faces) {
 			if(cpt==1) {
 				System.out.println("polygon"+ cpt+" "+f.getOp1().toString());
 			}
 			cpt++;
-			gc.strokePolygon(	new double[] {f.getOp1().getX()+x,f.getOp2().getX()+x,f.getOp3().getX()+x},
-					new double[] {f.getOp1().getY()+y,f.getOp2().getY()+y,f.getOp3().getY()+y},
-					3);
-			gc.fillPolygon(	new double[] {f.getOp1().getX()+x,f.getOp2().getX()+x,f.getOp3().getX()+x},
-					new double[] {f.getOp1().getY()+y,f.getOp2().getY()+y,f.getOp3().getY()+y},
-					3);
+			gc.strokePolygon(new double[] {f.getOp1().getX()+x+this.perspective(f.getOp1().getX(), x, f.getOp1().getZ()),
+										   f.getOp2().getX()+x+this.perspective(f.getOp2().getX(), x, f.getOp2().getZ()),
+										   f.getOp3().getX()+x+this.perspective(f.getOp3().getX(), x, f.getOp3().getZ())},
+							 new double[] {f.getOp1().getY()+y+this.perspective(f.getOp1().getY(), y, f.getOp1().getZ()),
+									 	   f.getOp2().getY()+y+this.perspective(f.getOp2().getY(), y, f.getOp2().getZ()),
+									 	   f.getOp3().getY()+y+this.perspective(f.getOp3().getY(), y, f.getOp3().getZ())},
+							3);
+			gc.fillPolygon(new double[] {f.getOp1().getX()+x+this.perspective(f.getOp1().getX(), x, f.getOp1().getZ()),
+										 f.getOp2().getX()+x+this.perspective(f.getOp2().getX(), x, f.getOp2().getZ()),
+										 f.getOp3().getX()+x+this.perspective(f.getOp3().getX(), x, f.getOp3().getZ())},
+						   new double[] {f.getOp1().getY()+y+this.perspective(f.getOp1().getY(), y, f.getOp1().getZ()),
+								   		 f.getOp2().getY()+y+this.perspective(f.getOp2().getY(), y, f.getOp2().getZ()),
+								   		 f.getOp3().getY()+y+this.perspective(f.getOp3().getY(), y, f.getOp3().getZ())},
+						   	3);
 		}
+		ombre(faces);
 		rota=false;
+	}
+	
+	private void ombre(ArrayList<Face> faces) {
+		double x=canvas.getWidth()/2;
+		double y=canvas.getHeight()/2;
+		if(!affichageSegment)
+			gc.setFill(Color.BLACK);
+		int ombre=300;
+		for (Face f : faces) {
+			if(testOmbre(f.getOp1().getY()+y,650)) {
+				gc.strokePolygon(new double[] {f.getOp1().getX()+x+this.perspective(f.getOp1().getX(), x, f.getOp1().getZ()),
+						f.getOp2().getX()+x+this.perspective(f.getOp2().getX(), x, f.getOp2().getZ()),
+						f.getOp3().getX()+x+this.perspective(f.getOp3().getX(), x, f.getOp3().getZ())},
+						new double[] {y+ombre+this.perspective(f.getOp1().getY()+y+ombre, y, f.getOp1().getZ()),
+								y+ombre+this.perspective(f.getOp2().getY()+y+ombre, y, f.getOp2().getZ()),
+								y+ombre+this.perspective(f.getOp3().getY()+y+ombre, y, f.getOp3().getZ())},
+						3);
+				if(!affichageSegment)
+					gc.fillPolygon(new double[] {f.getOp1().getX()+x+this.perspective(f.getOp1().getX(), x, f.getOp1().getZ()),
+							f.getOp2().getX()+x+this.perspective(f.getOp2().getX(), x, f.getOp2().getZ()),
+							f.getOp3().getX()+x+this.perspective(f.getOp3().getX(), x, f.getOp3().getZ())},
+							new double[] {y+ombre+this.perspective(f.getOp1().getY()+y+ombre, y, f.getOp1().getZ()),
+									y+ombre+this.perspective(f.getOp2().getY()+y+ombre, y, f.getOp2().getZ()),
+									y+ombre+this.perspective(f.getOp3().getY()+y+ombre, y, f.getOp3().getZ())},
+							3);
+			}
+		}
+
+		if(!affichageSegment)
+			gc.setFill(Color.RED);
+
+	}
+
+	public double perspective(double d, double center, double z) {
+        return  0.6 * (center -d) * (z * -0.0005);
+    }
+	
+	private boolean testOmbre(double d, int i ) {
+		return d<i;
 	}
 
 	// Affichage du modèle sous différentes formes
 
 
 	public void affichageDefaut(ActionEvent e) {
+		affichageSegment=false;
 		gc.setFill(Color.RED);
 		gc.setStroke(Color.BLACK);
 		afficheCanvas(m.getFaces());
+
 	}
 
 	public void affichageFace(ActionEvent e) {
+		affichageSegment=false;
 		gc.setFill(Color.RED);
 		gc.setStroke(Color.TRANSPARENT);
 		afficheCanvas(m.getFaces());
+	
 	}
 
 	public void affichageSegment(ActionEvent e) {
+		affichageSegment=true;
 		gc.setFill(Color.TRANSPARENT);
 		gc.setStroke(Color.BLACK);
 		afficheCanvas(m.getFaces());
