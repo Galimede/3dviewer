@@ -10,7 +10,7 @@ import main.Point;
 /**
  * 
  * @author dejonghg
- *	La classe PlyReader sert a lire les fichiers .ply 
+ *	La classe PlyReader sert aÂ lire les fichiers .ply 
  */
 public class PlyReader {
 	private ArrayList<Point> points=new ArrayList<>();
@@ -19,6 +19,8 @@ public class PlyReader {
 	private int nbFaces;
 	private FileReader fr;  
 	private BufferedReader br;
+	private int plusAGauche=-1;
+	private int plusADroite=-1;
 
 	/**
 	 * Renvoie la liste des points contenu dans le fichier .ply
@@ -37,7 +39,7 @@ public class PlyReader {
 	}
 	/**
 	 * Initialise un PlyReader et en lance la lecture
-	 * @param path L'argument path doit etre un chemin relatif ou absolu menant a  un fichier .ply
+	 * @param path L'argument path doit etre un chemin relatif ou absolu menant aÂ  un fichier .ply
 	 */
 	public PlyReader(String path){
 		String test=path.substring(path.length()-4,path.length());
@@ -62,6 +64,7 @@ public class PlyReader {
 			e.printStackTrace();
 		}
 		boolean enteteFini=false;
+		boolean zoomer=false;
 		double[] tmp=new double[3];
 		while(actu!=null) {
 
@@ -87,10 +90,28 @@ public class PlyReader {
 					}
 					if(i<=nbPoints-1) {
 						tmp=getCoorPoint(actu);
-					//	System.out.println(tmp[0]+" "+tmp[1]+" "+tmp[2]);
-
 						points.add(new Point(tmp[0],tmp[1],tmp[2]));
+						if(plusAGauche==-1) {
+							plusAGauche=0;
+							plusADroite=0;
+						}
+						if(points.get(points.size()-1).getX()<points.get(plusAGauche).getX()) {
+							plusAGauche=points.size()-1;
+						}
+						if(points.get(points.size()-1).getX()>points.get(plusADroite).getX()) {
+							plusADroite=points.size()-1;
+						}
+						
 					}else {
+						if(!zoomer) {
+							while(points.get(plusADroite).getX()-points.get(plusAGauche).getX()<900) {
+							points=Fonctions.homothetie(points,1.5);
+							}
+							zoomer=true;
+							if(points.get(plusADroite).getX()-points.get(plusAGauche).getX()<900) {
+								points=Fonctions.homothetie(points,0.66);
+							}
+						}
 						tmp=getPointFace(actu);
 						faces.add(new Face(points.get((int)tmp[0]), points.get((int)tmp[1]), points.get((int)tmp[2])));
 					}
@@ -102,7 +123,7 @@ public class PlyReader {
 				e.printStackTrace();
 			}
 		}
-
+		
 	}
 	private double[] getPointFace(String actu) {
 		String tmps=actu.substring(2,actu.length());
