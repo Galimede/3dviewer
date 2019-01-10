@@ -114,12 +114,12 @@ public class PlyReader {
 						
 					}else {
 						if(!zoomer) {
-							while(points.get(plusADroite).getX()-points.get(plusAGauche).getX()<800&&points.get(plusEnHaut).getY()-points.get(plusEnBas).getY()<800) {
+							while(points.get(plusADroite).getX()-points.get(plusAGauche).getX()<900&&points.get(plusEnHaut).getY()-points.get(plusEnBas).getY()<900) {
 							points=Fonctions.homothetie(points,1.2);
 							}
 							zoomer=true;
-							if(points.get(plusADroite).getX()-points.get(plusAGauche).getX()>900) {
-								points=Fonctions.homothetie(points,0.83);
+							if(points.get(plusADroite).getX()-points.get(plusAGauche).getX()>900||points.get(plusEnHaut).getY()-points.get(plusEnBas).getY()>900) {
+								points=Fonctions.homothetie(points,1.2);
 							}
 						}
 						tmp=getPointFace(actu);
