@@ -1,6 +1,8 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Observable;
 
 public class Model extends Observable{
@@ -42,6 +44,7 @@ public class Model extends Observable{
 	 */
 	public void setFaces(ArrayList<Face> faces) {
 		this.faces = faces;
+		Collections.sort(this.faces);
 		setChanged();
 		notifyObservers(this.faces);
 	}

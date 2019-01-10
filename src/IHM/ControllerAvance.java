@@ -40,36 +40,9 @@ public class ControllerAvance implements Runnable {
 		//rotationAutoActive=true;
 	}
 
-	@Override
-	public void run() {
-		while(true) {
-			//while(!rotationAutoActive) System.out.println("test");
-			rotation();
-			//model.setFaces(null);
-			try {
-				Thread.sleep(500);
-			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-				break;
-			}
-		}
-		
-	}
 	
-	public void rotation() {
-		ArrayList<Face> polygon= model.getFaces();
-		double x= Math.PI/4.0;
-		double y=0.0;
-		double z=0.0;
-		Face ftmp;
-		for(int i=0;i<polygon.size();i++) {
-			ftmp=new Face(	new Point(Fonctions.rotation(polygon.get(i).getP1(),x,y,z)),
-					new Point(Fonctions.rotation(polygon.get(i).getP2(),x,y,z)),
-					new Point(Fonctions.rotation(polygon.get(i).getP3(),x,y,z)));
-			polygon.set(i,ftmp);
-		}
-		model.setFaces(polygon);
-	}
+	
+	
 	/*
 	
 	public void addView(View view) {
@@ -98,6 +71,12 @@ public class ControllerAvance implements Runnable {
 		}
 
 	}*/
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
 		
 	}
 

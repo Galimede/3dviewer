@@ -37,7 +37,7 @@ import tools.PlyReader;
  * @author Mathieu DEGAND - 11/02/2018
  * Cette classe contr�le l'application FXML et ses diff�rents composants
  */
-public class ControllerIHM implements Observer {
+public class ControllerIHM  implements Observer, Runnable  {
 
 	boolean test=true;
 
@@ -89,6 +89,7 @@ public class ControllerIHM implements Observer {
 	CheckBox boxRotaAuto;
 
 	GraphicsContext gc;
+	boolean rota=false;
 
 	/**
 	 * Permet d'ouvrir un modele gr�ce au bouton ouvrir
@@ -240,6 +241,7 @@ public class ControllerIHM implements Observer {
 		double x= Math.PI/4.0;
 		double y=0.0;
 		double z=0.0;
+		System.out.println("test");
 		if(e.getSource().equals(rotationH)) {
 			x= Math.PI/4.0;
 		}
@@ -291,7 +293,7 @@ public class ControllerIHM implements Observer {
 					new double[] {f.getOp1().getY()+y,f.getOp2().getY()+y,f.getOp3().getY()+y},
 					3);
 		}
-
+		rota=false;
 	}
 
 	// Affichage du modèle sous différentes formes
@@ -317,36 +319,61 @@ public class ControllerIHM implements Observer {
 
 	// Permet l'affichage du mode avancé dans une nouvelle fenetre
 
-	public void rotationAutoActive(ActionEvent e) {
-		try{	
-			t= new Thread(new ControllerAvance(m));
-			/*ControllerAvance ca= new ControllerAvance(v);
-	            FXMLLoader fxmlLoader = new FXMLLoader();
-	            fxmlLoader.setLocation(getClass().getResource("modeAvance.fxml"));
-	            Parent root1 = (Parent) fxmlLoader.load();
-	            Stage stage = new Stage();
-	            stage.initModality(Modality.APPLICATION_MODAL);
-	            stage.setTitle("ABC");
-	            stage.setScene(new Scene(root1));  
-	            stage.show();*/
-			if(boxRotaAuto.isSelected()) {
-				if(!Thread.interrupted()) {
-					t.start();
-				}
+	public void rotationAutoActive(ActionEvent e) throws InterruptedException{
+			if(test) {
+				threadInitialize();
+				t.start();
+				test=false;
 			}
 			else {
 				t.interrupt();
+				test=true;
 			}
-		} catch(Exception exception) {
-			exception.printStackTrace();
-		}
+		
 	}
 	
+	public void rotation() {
+		ArrayList<Face> polygon= m.getFaces();
+		double x= Math.PI/4.0;
+		double y=0.0;
+		double z=0.0;
+		Face ftmp;
+		for(int i=0;i<polygon.size();i++) {
+			ftmp=new Face(	new Point(Fonctions.rotation(polygon.get(i).getP1(),x,y,z)),
+					new Point(Fonctions.rotation(polygon.get(i).getP2(),x,y,z)),
+					new Point(Fonctions.rotation(polygon.get(i).getP3(),x,y,z)));
+			polygon.set(i,ftmp);
+		}
+		m.setFaces(polygon);
+	}
+	
+	public void ouvreModeAvance() {
+		
+	}
+	
+	@Override
+	public void run() {
+		while(true) {
+			//while(!rotationAutoActive) System.out.println("test");
+			if(!rota)
+				rotation();
+			//model.setFaces(null);
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				Thread.currentThread().interrupt();
+				break;
+			}
+		}
+		
+	}
+	
+	
 	private void threadInitialize() {
-		t= new Thread(new ControllerAvance(m));
+		t= new Thread(this);
 	}
 
-	public void ouvreModeAvance () throws InterruptedException{
+	/*public void ouvreModeAvance () throws InterruptedException{
 		if(test) {
 			threadInitialize();
 			t.start();
@@ -356,7 +383,7 @@ public class ControllerIHM implements Observer {
 			t.interrupt();
 			test=true;
 		}
-	}
+	}*/
 
 
 
@@ -370,5 +397,6 @@ public class ControllerIHM implements Observer {
 		ArrayList<Face> arg2 = (ArrayList<Face>)arg1;
 		afficheCanvas(arg2);
 	}
+
 
 }

@@ -1,5 +1,5 @@
 package main;
-public class Face {
+public class Face implements Comparable<Face>{
 	private Point p1;
 	private Point p2;
 	private Point p3;
@@ -68,6 +68,18 @@ public class Face {
 	 */
 	public Point getOp3() {
 		return p3;
+	}
+	
+	@Override
+	public int compareTo(Face o) {
+		double d=(this.getOp1().getZ()+this.getOp2().getZ()+this.getOp3().getZ())-(o.getOp1().getZ()+o.getOp2().getZ()+o.getOp3().getZ());
+		int res=0;
+		if(d>0.0)
+			res=1;
+		if(d<0.0) {
+			res=-1;
+		}
+		return res;
 	}
 
 }
