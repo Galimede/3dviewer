@@ -36,6 +36,24 @@ public class Point {
 		return this.x;
 	}	
 	/**
+	 * @param x the x to set
+	 */
+	public void setX(double x) {
+		this.x = x;
+	}
+	/**
+	 * @param y the y to set
+	 */
+	public void setY(double y) {
+		this.y = y;
+	}
+	/**
+	 * @param z the z to set
+	 */
+	public void setZ(double z) {
+		this.z = z;
+	}
+	/**
 	 * Renvoie la coordonnee en Y du point
 	 * @return l'ordonnee du point
 	 */
