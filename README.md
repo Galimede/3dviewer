@@ -1,6 +1,6 @@
 # ProjetMode2018-M3
 
-> Le but du projet est de réaliser un logiciel pour la gestion d’une bibliothèque de modèeles 3D pour un FabLab.
+> Le but du projet est de réaliser un logiciel pour la gestion d’une bibliothèque de modèles 3D d'un FabLab.
 
 Le logiciel doit pouvoir à minima : 
 * charger un fichier qui contient un modèle 3D et l’afficher à l'ecran ;
@@ -24,7 +24,8 @@ Puis sur linux/Windows ouvrez un terminal et placez vous dans la racine du proje
 
 > Java -jar executable.jar
 
-> N.B : Pour ouvrir un modèle : cliquez sur ouvrir puis aller dans le répertoires ressources puis data et ouvrer le modèle voulu
+⚠ Pour ouvrir un modèle :
+> cliquez sur ouvrir puis aller dans le répertoires ressources puis data et ouvrer le modèle voulu
 
 ## TodoList & Historique des versions
 
@@ -41,16 +42,16 @@ Puis sur linux/Windows ouvrez un terminal et placez vous dans la racine du proje
 
 ### Livrable2
 
-- [] Diagramme UML du projet
-- [] Implémenter une rotation automatique
-- [] Créer un Affichage Avancé
-- [] Faire le rapport final du projet
-- [] Créer la vidéo de présentation 
-- [] Implémenter un système d'ombre portée dans le mode avancé
-- [] Régler la rotation 
-- [] Etoffer et rendre plus clair et lisible la doc
-- [] Modifier et produire d'autres tests 
-- [] Permettre différents affichages du modèle (Dégaut, Faces ou segments uniquement)
+- [ ] Diagramme UML du projet
+- [ ] Implémenter une rotation automatique
+- [ ] Créer un Affichage Avancé
+- [ ] Faire le rapport final du projet
+- [ ] Créer la vidéo de présentation 
+- [ ] Implémenter un système d'ombre portée dans le mode avancé
+- [ ] Régler la rotation 
+- [ ] Etoffer et rendre plus clair et lisible la doc
+- [ ] Modifier et produire d'autres tests 
+- [ ] Permettre différents affichages du modèle (Dégaut, Faces ou segments uniquement)
 
 
 ## Auteurs
