@@ -51,7 +51,6 @@ class TestFonctions {
 		double res[][] ={{4.0},{4.0},{4.0},{1.0}};
 		double [][]mauvais = {{1.0},{2.0}};
 		assertArrayEquals(res, Fonctions.homothetie(point, k));
-		assertNull(Fonctions.homothetie(null, k));
 		assertNull(Fonctions.homothetie(mauvais,k));
 		assertNull(Fonctions.homothetie(point,0.0));
 	}
