@@ -1,10 +1,14 @@
 package tools;
 
+import java.util.ArrayList;
+
+import main.Point;
+
 public class Fonctions {
 	/**
 	 * Fonction qui multiplie deux matrices entres elles
 	 * @param matriceA La premiere des matrices que l'on souhaite multiplier
-	 * @param matriceB La deuxi�me matrice que l'on souhaite multiplier
+	 * @param matriceB La deuxiï¿½me matrice que l'on souhaite multiplier
 	 * @return le produit de la matriceA par la matriceB
 	 */
 	public static double[][] multiplier(double[][] matriceA, double[][] matriceB){
@@ -39,7 +43,7 @@ public class Fonctions {
 	}
 
 	/**
-	 * Fonction qui r�alise la translation d'un point par un vecteur en 3D
+	 * Fonction qui rï¿½alise la translation d'un point par un vecteur en 3D
 	 * @param point La matrice du point de taille 4x1
 	 * @param vecteur La matrice du vecteur representant la traslation de taille 3x1
 	 * @return la nouvelle matrice du point apres la translation 
@@ -51,7 +55,7 @@ public class Fonctions {
 		}
 		double [][]matV= {{1.0,0.0,0.0,vecteur[0]},{0.0,1.0,0.0,vecteur[1]},{0.0,0.0,1.0,vecteur[2]},{0.0,0.0,0.0,1.0}};
 		return multiplier(matV,point);
-	}
+	}	
 
 	/**
 	 *  Retourne l'homothetie 3D d'un certain rapport passe en parametres autour de l'origine
@@ -70,9 +74,22 @@ public class Fonctions {
 		homothetieRes[2][0]=homothetieRes[2][0]*rapport;
 		return homothetieRes;
 	}
+	public static ArrayList<Point> homothetie(ArrayList<Point> ap, double rapport){
+		if(rapport==0.0||ap==null) {
+			System.out.println("Erreur homothetie");
+			return null;
+		}
+		for(Point p : ap) {
+				p.setX(p.getX()*rapport);
+				p.setY(p.getY()*rapport);
+				p.setZ(p.getZ()*rapport);
+		}
+		return ap;
+	}
+
 
 	/**
-	 * R�alistion la rotation 3D  autour du point (0,0)
+	 * Rï¿½alistion la rotation 3D  autour du point (0,0)
 	 * @param point La matrice du point avant rotation de taille 4x1
 	 * @param angleX Angle en radians de la rotation sur l'axe des X
 	 * @param angleY Angle en radians de la rotation sur l'axe des Y
