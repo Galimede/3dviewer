@@ -114,7 +114,7 @@ public class PlyReader {
 						
 					}else {
 						if(!zoomer) {
-							while(points.get(plusADroite).getX()-points.get(plusAGauche).getX()<1000&&points.get(plusEnHaut).getY()-points.get(plusEnBas).getY()<1000) {
+							while(points.get(plusADroite).getX()-points.get(plusAGauche).getX()<800&&points.get(plusEnHaut).getY()-points.get(plusEnBas).getY()<800) {
 							points=Fonctions.homothetie(points,1.2);
 							}
 							zoomer=true;
