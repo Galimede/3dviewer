@@ -80,9 +80,9 @@ public class Fonctions {
 			return null;
 		}
 		for(Point p : ap) {
-			p.setX(p.getX()*rapport);
-			p.setY(p.getY()*rapport);
-			p.setZ(p.getZ()*rapport);
+				p.setX(p.getX()*rapport);
+				p.setY(p.getY()*rapport);
+				p.setZ(p.getZ()*rapport);
 		}
 		return ap;
 	}
@@ -101,14 +101,8 @@ public class Fonctions {
 			System.out.println("Erreur rotation");
 			return null;
 		}
-		double cosX,sinX;
-		if(angleX!=0) {
-			cosX = Math.cos(angleX);
-			sinX = Math.sin(angleX);
-		}else {
-			cosX=0;
-			sinX=0;
-		}
+		double cosX =Math.cos(angleX);
+		double sinX =Math.sin(angleX);
 		double zero=0.0;
 		double un=1.0;
 		double[][] rX = { 
@@ -117,28 +111,16 @@ public class Fonctions {
 				{zero,sinX,cosX, zero},
 				{zero,zero,zero,un}
 		};
-		double cosY,sinY;
-		if(angleY!=0) {
-			cosY = Math.cos(angleY);
-			sinY = Math.sin(angleY);
-		}else {
-			cosY=0;
-			sinY=0;
-		}
+		double cosY = Math.cos(angleY);
+		double sinY = Math.sin(angleY);
 		double[][] rY = { 
 				{cosY,zero,sinY,zero},
 				{zero,un,zero,zero}, 
 				{-sinY,zero,cosY,zero},
 				{zero,zero,zero,un}
 		};
-		double cosZ,sinZ;
-		if(angleZ!=0) {
-			cosZ = Math.cos(angleZ);
-			sinZ = Math.sin(angleZ);
-		}else {
-			cosZ=0;
-			sinZ=0;
-		}
+		double cosZ = Math.cos(angleZ);
+		double sinZ = Math.sin(angleZ);
 		double[][] rZ = { 
 				{cosZ,-sinZ,zero,zero},
 				{sinZ, cosZ,zero,zero},
