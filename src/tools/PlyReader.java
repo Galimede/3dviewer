@@ -119,7 +119,7 @@ public class PlyReader {
 							}
 							zoomer=true;
 							if(points.get(plusADroite).getX()-points.get(plusAGauche).getX()>650||points.get(plusEnHaut).getY()-points.get(plusEnBas).getY()>450) {
-								points=Fonctions.homothetie(points,1.2);
+								points=Fonctions.homothetie(points,0.8);
 							}
 						}
 						tmp=getPointFace(actu);
