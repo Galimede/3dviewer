@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<SplitPane dividerPositions="0.7" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IHM.ControllerIHM">
+<SplitPane dividerPositions="0.823394495412844" prefHeight="1025.0" prefWidth="1928.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IHM.ControllerIHM">
    <items>
       <Canvas fx:id="canvas" height="1023.0" width="1433.0" SplitPane.resizableWithParent="false" />
       <VBox alignment="CENTER" style="-fx-background-color: #2C2F33;" SplitPane.resizableWithParent="false">
