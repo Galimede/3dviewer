@@ -121,6 +121,20 @@ public class PlyReader {
 							while(points.get(plusADroite).getX()-points.get(plusAGauche).getX()>650||points.get(plusEnHaut).getY()-points.get(plusEnBas).getY()>450) {
 								points=Fonctions.homothetie(points,0.83);
 							}
+							
+							double vecteurToOrigine[]=new double [3];
+							vecteurToOrigine[2]=0;
+							vecteurToOrigine[0]=(points.get(plusAGauche).getX()+points.get(plusADroite).getX())/2;
+							vecteurToOrigine[1]=(points.get(plusEnHaut).getY()+points.get(plusEnBas).getY())/2;
+							ArrayList<Point> arrayTmp=new ArrayList<Point>();
+							for(Point p : points) {
+								double [][] pointTmp= {{p.getX()},{p.getY()},{p.getZ()},{1.0}};
+								double [][] translaTmp=Fonctions.translation3D(pointTmp,vecteurToOrigine);
+								arrayTmp.add(new Point(translaTmp[0][0],translaTmp[1][0],translaTmp[2][0]));
+							}
+							points=arrayTmp;
+							
+							
 						}
 						tmp=getPointFace(actu);
 						faces.add(new Face(points.get((int)tmp[0]), points.get((int)tmp[1]), points.get((int)tmp[2])));
