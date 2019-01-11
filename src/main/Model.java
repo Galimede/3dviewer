@@ -5,6 +5,8 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Observable;
 
+import tools.Fonctions;
+
 public class Model extends Observable{
 	private ArrayList<Point> points=new ArrayList<>();
 	private ArrayList<Face> faces=new ArrayList<>();
@@ -43,6 +45,27 @@ public class Model extends Observable{
 	 * @param faces La liste de faces a attribuer au model
 	 */
 	public void setFaces(ArrayList<Face> faces) {
+		ArrayList<Point> pointsTmp=new ArrayList<Point>();
+		for(Face f : faces ) {
+			pointsTmp.add(f.getOp1());
+			pointsTmp.add(f.getOp2());
+			pointsTmp.add(f.getOp3());
+		}
+		boolean init=false;
+		double minX=-1,minY=-1,maxX=-1,maxY=-1;
+		for(Point p :pointsTmp) {
+			if(!init) {
+				minX=p.getX();minY=p.getY();maxY=p.getY();maxY=p.getX();
+				init=true;
+			}
+			if(p.getX()<minX){minX=p.getX();};
+			if(p.getX()>maxX){maxX=p.getX();};
+			if(p.getY()<minY){minY=p.getY();};
+			if(p.getY()>maxY){maxY=p.getY();};
+		}
+		double []vecteur=new double[3];
+		vecteur[0]=(minX+maxX)/2;vecteur[1]=(minY+maxY)/2;vecteur[2]=0;
+		faces=Fonctions.translation3D(faces, vecteur);
 		this.faces = faces;
 		Collections.sort(this.faces);
 		setChanged();
