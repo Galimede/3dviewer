@@ -336,21 +336,40 @@ public class ControllerIHM  implements Observer, Runnable  {
 		for (Face f : faces) {
 			if(cpt==1) {
 				System.out.println("polygon"+ cpt+" "+f.getOp1().toString());
+				cpt++;
 			}
-			cpt++;
-			gc.strokePolygon(new double[] {f.getOp1().getX()+x+this.perspective(f.getOp1().getX(), x, f.getOp1().getZ()),
-										   f.getOp2().getX()+x+this.perspective(f.getOp2().getX(), x, f.getOp2().getZ()),
-										   f.getOp3().getX()+x+this.perspective(f.getOp3().getX(), x, f.getOp3().getZ())},
-							 new double[] {f.getOp1().getY()+y+this.perspective(f.getOp1().getY(), y, f.getOp1().getZ()),
-									 	   f.getOp2().getY()+y+this.perspective(f.getOp2().getY(), y, f.getOp2().getZ()),
-									 	   f.getOp3().getY()+y+this.perspective(f.getOp3().getY(), y, f.getOp3().getZ())},
+			
+			
+			
+			Point op1 = f.getOp1();
+			Point op2 = f.getOp2();
+			Point op3 = f.getOp3();
+			double op1X = op1.getX();
+			double op2X = op2.getX();
+			double op3X = op3.getX();
+			
+			double op1Y = op1.getY();
+			double op2Y = op2.getY();
+			double op3Y = op3.getY();
+			
+			double op1Z = op1.getZ();
+			double op2Z = op2.getZ();
+			double op3Z = op3.getZ();
+			
+			gc.strokePolygon(new double[] {op1X+x+this.perspective(op1X, x, op1Z),
+										   op2X+x+this.perspective(op2X, x, op2Z),
+										   op3X+x+this.perspective(op3X, x, op3Z)},
+							 new double[] {op1Y+y+this.perspective(op1Y, y, op1Z),
+									 	   op2Y+y+this.perspective(op2Y, y, op2Z),
+									 	   op3Y+y+this.perspective(op3Y, y, op3Z)},
 							3);
-			gc.fillPolygon(new double[] {f.getOp1().getX()+x+this.perspective(f.getOp1().getX(), x, f.getOp1().getZ()),
-										 f.getOp2().getX()+x+this.perspective(f.getOp2().getX(), x, f.getOp2().getZ()),
-										 f.getOp3().getX()+x+this.perspective(f.getOp3().getX(), x, f.getOp3().getZ())},
-						   new double[] {f.getOp1().getY()+y+this.perspective(f.getOp1().getY(), y, f.getOp1().getZ()),
-								   		 f.getOp2().getY()+y+this.perspective(f.getOp2().getY(), y, f.getOp2().getZ()),
-								   		 f.getOp3().getY()+y+this.perspective(f.getOp3().getY(), y, f.getOp3().getZ())},
+			
+			gc.fillPolygon(new double[] {op1X+x+this.perspective(op1X, x, op1Z),
+										 op2X+x+this.perspective(op2X, x, op2Z),
+										 op3X+x+this.perspective(op3X, x, op3Z)},
+						   new double[] {op1Y+y+this.perspective(op1Y, y, op1Z),
+								   		 op2Y+y+this.perspective(op2Y, y, op2Z),
+								   		 op3Y+y+this.perspective(op3Y, y, op3Z)},
 						   	3);
 		}
 		ombre(faces);
@@ -366,21 +385,35 @@ public class ControllerIHM  implements Observer, Runnable  {
 		Face max = Collections.max(faces, new FaceComparator());
 		System.out.println(max.getOp1().getY());
 		for (Face f : faces) {
+			Point op1 = f.getOp1();
+			Point op2 = f.getOp2();
+			Point op3 = f.getOp3();
+			double op1X = op1.getX();
+			double op2X = op2.getX();
+			double op3X = op3.getX();
+			
+			double op1Y = op1.getY();
+			double op2Y = op2.getY();
+			double op3Y = op3.getY();
+			
+			double op1Z = op1.getZ();
+			double op2Z = op2.getZ();
+			double op3Z = op3.getZ();
 			if(testOmbre(max.getOp1().getY()+y,800)) {
-				gc.strokePolygon(new double[] {f.getOp1().getX()+x+this.perspective(f.getOp1().getX(), x, f.getOp1().getZ()),
-						f.getOp2().getX()+x+this.perspective(f.getOp2().getX(), x, f.getOp2().getZ()),
-						f.getOp3().getX()+x+this.perspective(f.getOp3().getX(), x, f.getOp3().getZ())},
-						new double[] {y+ombre+this.perspective(f.getOp1().getY()+y+ombre, y, f.getOp1().getZ()),
-								y+ombre+this.perspective(f.getOp2().getY()+y+ombre, y, f.getOp2().getZ()),
-								y+ombre+this.perspective(f.getOp3().getY()+y+ombre, y, f.getOp3().getZ())},
+				gc.strokePolygon(new double[] {op1X+x+this.perspective(op1X, x, op1Z),
+											   op2X+x+this.perspective(op1X, x, op2Z),
+											   op3X+x+this.perspective(op3X, x, op3Z)},
+						new double[] {y+ombre+this.perspective(op1Y+y+ombre, y, op1Z),
+									  y+ombre+this.perspective(op2Y+y+ombre, y, op2Z),
+									  y+ombre+this.perspective(op3Y+y+ombre, y, op3Z)},
 						3);
 				if(!affichageSegment)
-					gc.fillPolygon(new double[] {f.getOp1().getX()+x+this.perspective(f.getOp1().getX(), x, f.getOp1().getZ()),
-							f.getOp2().getX()+x+this.perspective(f.getOp2().getX(), x, f.getOp2().getZ()),
-							f.getOp3().getX()+x+this.perspective(f.getOp3().getX(), x, f.getOp3().getZ())},
-							new double[] {y+ombre+this.perspective(f.getOp1().getY()+y+ombre, y, f.getOp1().getZ()),
-									y+ombre+this.perspective(f.getOp2().getY()+y+ombre, y, f.getOp2().getZ()),
-									y+ombre+this.perspective(f.getOp3().getY()+y+ombre, y, f.getOp3().getZ())},
+					gc.fillPolygon(new double[] {op1X+x+this.perspective(op1X, x, op1Z),
+												 op2X+x+this.perspective(op2X, x, op2Z),
+												 op3X+x+this.perspective(op3X, x, op3Z)},
+							new double[] {y+ombre+this.perspective(op1Y+y+ombre, y, op1Z),
+										  y+ombre+this.perspective(op1Y+y+ombre, y, op2Z),
+										  y+ombre+this.perspective(op1Y+y+ombre, y, op3Z)},
 							3);
 			}
 		}
