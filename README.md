@@ -12,7 +12,7 @@ Dans la seconde version le logiciel peut aussi :
 * Afficher le modèle dans un affichage de type "avancé" et afficher son ombre
 * Afficher le modèle sous différentes formes : Défaut, Faces ou segments uniquement
 
-[Video de presentation]()
+[Video de presentation](https://youtu.be/_bQ6GyxH45I)
 
 
 ## Installation
