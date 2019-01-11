@@ -45,6 +45,13 @@ public class Model extends Observable{
 	 * @param faces La liste de faces a attribuer au model
 	 */
 	public void setFaces(ArrayList<Face> faces) {
+		this.faces = faces;
+		Collections.sort(this.faces);
+		setChanged();
+		notifyObservers(this.faces);
+	}
+	
+	public void setFacesZ(ArrayList<Face> faces) {
 		ArrayList<Point> pointsTmp=new ArrayList<Point>();
 		for(Face f : faces ) {
 			pointsTmp.add(f.getOp1());
@@ -64,7 +71,7 @@ public class Model extends Observable{
 			if(p.getY()>maxY){maxY=p.getY();};
 		}
 		double []vecteur=new double[3];
-		vecteur[0]=(minX+maxX)/2;vecteur[1]=(minY+maxY)/2;vecteur[2]=0;
+		vecteur[0]=-(minX+maxX)/2;vecteur[1]=-(minY+maxY)/2;vecteur[2]=0;
 		faces=Fonctions.translation3D(faces, vecteur);
 		this.faces = faces;
 		Collections.sort(this.faces);

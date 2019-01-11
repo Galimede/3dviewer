@@ -2,36 +2,26 @@ package IHM;
 
 import java.awt.Dimension;
 import java.io.File;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.ResourceBundle;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import main.Face;
 import main.Model;
 import main.Point;
-import modeAvance.View;
 import tools.Fonctions;
 import tools.PlyReader;
 /**
@@ -93,7 +83,8 @@ public class ControllerIHM  implements Observer, Runnable  {
 	GraphicsContext gc;
 	boolean rota=false;
 	boolean affichageSegment =false;
-
+	double xSouris;
+	double ySouris;
 	/**
 	 * Permet d'ouvrir un fichier ply et d'initialiser le modele
 	 * 
@@ -115,6 +106,42 @@ public class ControllerIHM  implements Observer, Runnable  {
 				fichier.setText(cheminModele.substring(cheminModele.lastIndexOf("/")+1, cheminModele.lastIndexOf(".")));
 				last = 1;
 			}
+		}
+		canvas.setOnMouseDragged(r->controleSouris(r));
+		canvas.setOnScroll(s->controleSouris(s));
+		xSouris=canvas.getWidth()/2;
+		ySouris=canvas.getHeight()/2;
+	}
+
+	private void controleSouris(ScrollEvent s) {
+		if(s.getDeltaY()>0) {
+			rapport=1.1;
+			homothethie();
+		}
+		else {
+			rapport=0.9;
+			homothethie();
+		}
+		
+	}
+
+	private void controleSouris(MouseEvent e) {
+
+		double []vecteur= {0.0,0.0,0.0};
+		if(e.isPrimaryButtonDown()) {
+			ArrayList<Face> polygon= m.getFaces();
+			vecteur[0]=e.getX()-xSouris;
+			vecteur[1]=e.getY()-ySouris;
+			translation(polygon,vecteur);
+			xSouris=e.getX();
+			ySouris=e.getY();
+		}
+		else {
+			vecteur[0]=(e.getX()-xSouris)*0.02;
+			vecteur[1]=(e.getY()-ySouris)*0.02;
+			rotation(vecteur[0],vecteur[1]);
+			xSouris=e.getX();
+			ySouris=e.getY();
 		}
 	}
 
@@ -247,7 +274,7 @@ public class ControllerIHM  implements Observer, Runnable  {
 					new Point(Fonctions.homothetie(polygon.get(i).getP3(),rapport)));
 			polygon.set(i,ftmp);
 		}
-		m.setFaces(polygon);
+		m.setFacesZ(polygon);
 	}
 
 
@@ -268,17 +295,17 @@ public class ControllerIHM  implements Observer, Runnable  {
 		double y=0.0;
 		double z=0.0;
 		if(e.getSource().equals(rotationH)) {
-			x= Math.PI/2.0;
+			x= Math.PI/8.0;
 		}
 		else if(e.getSource().equals(rotationB)) {
 			System.out.println("test");
-			x= -Math.PI/2.0;
+			x= -Math.PI/8.0;
 		}
 		else if(e.getSource().equals(rotationG)) {
-			y= Math.PI/2.0;
+			y= Math.PI/8.0;
 		}
 		else {
-			y= -Math.PI/2.0;
+			y= -Math.PI/8.0;
 		}
 
 		Face ftmp;
@@ -428,10 +455,10 @@ public class ControllerIHM  implements Observer, Runnable  {
 		
 	}
 	
-	private void rotation() {
+	private void rotation(double d1, double d2) {
 		ArrayList<Face> polygon= m.getFaces();
-		double x= Math.PI/2.0;
-		double y=0.0;
+		double x=d1;
+		double y=d2;
 		double z=0.0;
 		Face ftmp;
 		for(int i=0;i<polygon.size();i++) {
@@ -454,7 +481,7 @@ public class ControllerIHM  implements Observer, Runnable  {
 	public void run() {
 		while(true) {
 			if(!rota)
-				rotation();
+				rotation(Math.PI/8.0,0.0);
 			try {
 				Thread.sleep(500);
 			} catch (InterruptedException e) {

@@ -37,8 +37,6 @@ class TestFonctions {
 								{0,0,1,1},
 								{0,0,0,1}} ;
 		assertArrayEquals(resEspere, Fonctions.translation3D(point, vecteur));
-		assertNull(Fonctions.translation3D(null, null));
-		assertNull(Fonctions.translation3D(null, vecteur));
 		assertNull(Fonctions.translation3D(point, null));
 		assertNull(Fonctions.translation3D(mauvaisP, null));
 		assertNull(Fonctions.translation3D(point,mauvaisV));
