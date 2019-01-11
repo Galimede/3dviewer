@@ -147,7 +147,6 @@ public class ControllerIHM  implements Observer, Runnable  {
 
 	/**
 	 * Permet d'ouvrir l'ancien modele avant le courant 
-	 * 
 	 * @param e
 	 */
 	public void openLastModel(ActionEvent e) {
