@@ -17,7 +17,7 @@
 <SplitPane dividerPositions="0.7" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IHM.ControllerIHM">
    <items>
       <Canvas fx:id="canvas" height="1023.0" width="1433.0" />
-      <VBox alignment="CENTER" style="-fx-background-color: #2C2F33;">
+      <VBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1023.0" prefWidth="500.0" style="-fx-background-color: #2C2F33;">
          <children>
             <Label text="Rotation" textFill="WHITE">
                <font>
