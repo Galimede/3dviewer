@@ -95,7 +95,9 @@ public class ControllerIHM  implements Observer, Runnable  {
 	boolean affichageSegment =false;
 
 	/**
-	 * Permet d'ouvrir un modele gr�ce au bouton ouvrir
+	 * Permet d'ouvrir un fichier ply et d'initialiser le modele
+	 * 
+	 * @param e
 	 */
 	public void openModel(ActionEvent e) {
 		File modelePLY = fileChooser.showOpenDialog(new Stage());
@@ -118,6 +120,8 @@ public class ControllerIHM  implements Observer, Runnable  {
 
 	/**
 	 * Permet d'ouvrir l'ancien modele avant le courant 
+	 * 
+	 * @param e
 	 */
 	public void openLastModel(ActionEvent e) {
 		if(!fichier.getText().equals("")) {
@@ -132,7 +136,9 @@ public class ControllerIHM  implements Observer, Runnable  {
 	// Translation
 
 	/**
-	 * Pr�paration de la translation Gauche et translation
+	 * Preparation de la translation Gauche et translation
+	 * 
+	 * @param e
 	 */
 	public void translationG(ActionEvent e) {
 		ArrayList<Face> polygon= m.getFaces();
@@ -142,7 +148,9 @@ public class ControllerIHM  implements Observer, Runnable  {
 	}
 
 	/**
-	 * Pr�paration de la translation Gauche et translation
+	 * Preparation de la translation Gauche et translation
+	 * 
+	 * @param e
 	 */
 	public void translationD(ActionEvent e) {
 		ArrayList<Face> polygon= m.getFaces();
@@ -152,7 +160,9 @@ public class ControllerIHM  implements Observer, Runnable  {
 	}
 
 	/**
-	 * Pr�paration de la translation Gauche et translation
+	 * Preparation de la translation Gauche et translation
+	 * 
+	 * @param e
 	 */
 	public void translationH(ActionEvent e) {
 		ArrayList<Face> polygon= m.getFaces();
@@ -162,7 +172,9 @@ public class ControllerIHM  implements Observer, Runnable  {
 	}
 
 	/**
-	 * Pr�paration de la translation Gauche et translation
+	 * Preparation de la translation Gauche et translation
+	 * 
+	 * @param e
 	 */
 	public void translationB(ActionEvent e) {
 		ArrayList<Face> polygon= m.getFaces();
@@ -173,6 +185,8 @@ public class ControllerIHM  implements Observer, Runnable  {
 
 	/**
 	 * Raffiche le modele depuis l'origine
+	 * 
+	 * @param e
 	 */
 	public void translationOrigine(ActionEvent e) {
 		pr1 = new PlyReader(cheminModele);
@@ -184,6 +198,9 @@ public class ControllerIHM  implements Observer, Runnable  {
 
 	/**
 	 * Methode effecutant la translation
+	 * 
+	 * @param polygon
+	 * @param vecteur
 	 */
 	public void translation(ArrayList<Face> polygon, double[] vecteur) {
 		Face ftmp;
@@ -199,7 +216,9 @@ public class ControllerIHM  implements Observer, Runnable  {
 	// Homothethie
 
 	/**
-	 * pr�paration de l'homothethie <<plus>>
+	 * controlleur de l'homothethie <<plus>>
+	 * 
+	 * @param e
 	 */
 	public void homothethiePlus(ActionEvent e) {
 		rapport = 1.2;
@@ -207,7 +226,9 @@ public class ControllerIHM  implements Observer, Runnable  {
 	}
 
 	/**
-	 * pr�paration de l'homothethie <<moins>>
+	 * controlleur de l'homothethie <<moins>>
+	 * 
+	 * @param e
 	 */
 	public void homothethieMoins(ActionEvent e) {
 		rapport = 0.8;
@@ -238,6 +259,8 @@ public class ControllerIHM  implements Observer, Runnable  {
 
 	/**
 	 * Effectue la rotation
+	 * 
+	 * @param e
 	 */
 	public void rotation(ActionEvent e) {
 		ArrayList<Face> polygon= m.getFaces();
@@ -340,8 +363,9 @@ public class ControllerIHM  implements Observer, Runnable  {
 			gc.setFill(Color.RED);
 
 	}
-
-	public double perspective(double d, double center, double z) {
+	
+	
+	private double perspective(double d, double center, double z) {
         return  0.6 * (center -d) * (z * -0.0005);
     }
 	
@@ -349,9 +373,11 @@ public class ControllerIHM  implements Observer, Runnable  {
 		return d<i;
 	}
 
-	// Affichage du modèle sous différentes formes
 
-
+	/**
+	 * permet l'affichage par defaut du modele
+	 * @param e
+	 */
 	public void affichageDefaut(ActionEvent e) {
 		affichageSegment=false;
 		gc.setFill(Color.RED);
@@ -359,7 +385,11 @@ public class ControllerIHM  implements Observer, Runnable  {
 		afficheCanvas(m.getFaces());
 
 	}
-
+	
+	/**
+	 * permet d'afficher seulement les faces du modele
+	 * @param e
+	 */
 	public void affichageFace(ActionEvent e) {
 		affichageSegment=false;
 		gc.setFill(Color.RED);
@@ -367,7 +397,11 @@ public class ControllerIHM  implements Observer, Runnable  {
 		afficheCanvas(m.getFaces());
 	
 	}
-
+	
+	/**
+	 * permet d'afficher seulement les segments du modele
+	 * @param e
+	 */
 	public void affichageSegment(ActionEvent e) {
 		affichageSegment=true;
 		gc.setFill(Color.TRANSPARENT);
@@ -375,8 +409,12 @@ public class ControllerIHM  implements Observer, Runnable  {
 		afficheCanvas(m.getFaces());
 	}
 
-	// Permet l'affichage du mode avancé dans une nouvelle fenetre
-
+	/**
+	 * controlleur de la rotation automatique
+	 * 
+	 * @param e
+	 * @throws InterruptedException
+	 */
 	public void rotationAutoActive(ActionEvent e) throws InterruptedException{
 			if(test) {
 				threadInitialize();
@@ -390,7 +428,7 @@ public class ControllerIHM  implements Observer, Runnable  {
 		
 	}
 	
-	public void rotation() {
+	private void rotation() {
 		ArrayList<Face> polygon= m.getFaces();
 		double x= Math.PI/2.0;
 		double y=0.0;
@@ -409,13 +447,14 @@ public class ControllerIHM  implements Observer, Runnable  {
 		
 	 }
 	
+	/**
+	 * methode du thread de la rotation automatique
+	 */
 	@Override
 	public void run() {
 		while(true) {
-			//while(!rotationAutoActive) System.out.println("test");
 			if(!rota)
 				rotation();
-			//model.setFaces(null);
 			try {
 				Thread.sleep(500);
 			} catch (InterruptedException e) {
@@ -431,26 +470,16 @@ public class ControllerIHM  implements Observer, Runnable  {
 		t= new Thread(this);
 	}
 
-	/*public void ouvreModeAvance () throws InterruptedException{
-		if(test) {
-			threadInitialize();
-			t.start();
-			test=false;
-		}
-		else {
-			t.interrupt();
-			test=true;
-		}
-	}*/
-
-
-
 
 	private static String getFileExtension(File file) {
 		int dotIndex = file.toString().lastIndexOf('.');
 		return (dotIndex == -1) ? "" : file.toString().substring(dotIndex + 1);
 	}
 
+	/**
+	 * update automatique du mvc
+	 * 
+	 */
 	public void update(Observable arg0, Object arg1) {
 		ArrayList<Face> arg2 = (ArrayList<Face>)arg1;
 		afficheCanvas(arg2);
