@@ -2,13 +2,14 @@ package tools;
 
 import java.util.ArrayList;
 
+import main.Face;
 import main.Point;
 
 public class Fonctions {
 	/**
 	 * Fonction qui multiplie deux matrices entres elles
 	 * @param matriceA La premiere des matrices que l'on souhaite multiplier
-	 * @param matriceB La deuxiï¿½me matrice que l'on souhaite multiplier
+	 * @param matriceB La deuxiÃ¯Â¿Â½me matrice que l'on souhaite multiplier
 	 * @return le produit de la matriceA par la matriceB
 	 */
 	public static double[][] multiplier(double[][] matriceA, double[][] matriceB){
@@ -43,7 +44,7 @@ public class Fonctions {
 	}
 
 	/**
-	 * Fonction qui rï¿½alise la translation d'un point par un vecteur en 3D
+	 * Fonction qui rÃ¯Â¿Â½alise la translation d'un point par un vecteur en 3D
 	 * @param point La matrice du point de taille 4x1
 	 * @param vecteur La matrice du vecteur representant la traslation de taille 3x1
 	 * @return la nouvelle matrice du point apres la translation 
@@ -89,7 +90,7 @@ public class Fonctions {
 
 
 	/**
-	 * Rï¿½alistion la rotation 3D  autour du point (0,0)
+	 * RÃ¯Â¿Â½alistion la rotation 3D  autour du point (0,0)
 	 * @param point La matrice du point avant rotation de taille 4x1
 	 * @param angleX Angle en radians de la rotation sur l'axe des X
 	 * @param angleY Angle en radians de la rotation sur l'axe des Y
@@ -130,6 +131,20 @@ public class Fonctions {
 		double[][] rotation = multiplier(rZ, rY);
 		rotation = multiplier(rotation, rX);  
 		return multiplier(rotation,point);
+	}
+
+	public static ArrayList<Face> translation3D(ArrayList<Face> faces, double[] vecteur) {
+		ArrayList<Face> res=new ArrayList<Face>();
+		for(Face f : faces) {
+			double[][]tmpMat=translation3D(f.getP1(),vecteur);
+			Point tmp1=new Point(tmpMat[0][0],tmpMat[1][0],tmpMat[2][0]);
+			tmpMat=translation3D(f.getP2(),vecteur);
+			Point tmp2=new Point(tmpMat[0][0],tmpMat[1][0],tmpMat[2][0]);
+			tmpMat=translation3D(f.getP3(),vecteur);
+			Point tmp3=new Point(tmpMat[0][0],tmpMat[1][0],tmpMat[2][0]);
+			res.add(new Face(tmp1,tmp2,tmp3));
+		}
+		return res;
 	}
 }
 
