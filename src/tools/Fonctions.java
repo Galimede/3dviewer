@@ -9,7 +9,7 @@ public class Fonctions {
 	/**
 	 * Fonction qui multiplie deux matrices entres elles
 	 * @param matriceA La premiere des matrices que l'on souhaite multiplier
-	 * @param matriceB La deuxiÃ¯Â¿Â½me matrice que l'on souhaite multiplier
+	 * @param matriceB La deuxieeme matrice que l'on souhaite multiplier
 	 * @return le produit de la matriceA par la matriceB
 	 */
 	public static double[][] multiplier(double[][] matriceA, double[][] matriceB){
@@ -44,7 +44,7 @@ public class Fonctions {
 	}
 
 	/**
-	 * Fonction qui rÃ¯Â¿Â½alise la translation d'un point par un vecteur en 3D
+	 * Fonction qui realise la translation d'un point par un vecteur en 3D
 	 * @param point La matrice du point de taille 4x1
 	 * @param vecteur La matrice du vecteur representant la traslation de taille 3x1
 	 * @return la nouvelle matrice du point apres la translation 
@@ -90,7 +90,7 @@ public class Fonctions {
 
 
 	/**
-	 * RÃ¯Â¿Â½alistion la rotation 3D  autour du point (0,0)
+	 * Realistion la rotation 3D  autour du point (0,0)
 	 * @param point La matrice du point avant rotation de taille 4x1
 	 * @param angleX Angle en radians de la rotation sur l'axe des X
 	 * @param angleY Angle en radians de la rotation sur l'axe des Y
@@ -132,7 +132,12 @@ public class Fonctions {
 		rotation = multiplier(rotation, rX);  
 		return multiplier(rotation,point);
 	}
-
+	/**
+	 * Fonction qui realise la translation d'une arraylist de face par un vecteur en 3D
+	 * @param faces une arraylist de faces 
+	 * @param vecteur La matrice du vecteur representant la traslation de taille 3x1
+	 * @return la nouvelle arraylist de faces apres la translation 
+	 */
 	public static ArrayList<Face> translation3D(ArrayList<Face> faces, double[] vecteur) {
 		ArrayList<Face> res=new ArrayList<Face>();
 		for(Face f : faces) {
