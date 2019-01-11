@@ -4,6 +4,8 @@ import java.awt.Dimension;
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.ResourceBundle;
@@ -239,21 +241,21 @@ public class ControllerIHM  implements Observer, Runnable  {
 	 */
 	public void rotation(ActionEvent e) {
 		ArrayList<Face> polygon= m.getFaces();
-		double x= Math.PI/2.0;
+		double x=0.0;
 		double y=0.0;
 		double z=0.0;
-		System.out.println("test");
 		if(e.getSource().equals(rotationH)) {
-			x= Math.PI/4.0;
+			x= Math.PI/2.0;
 		}
 		else if(e.getSource().equals(rotationB)) {
-			x= -Math.PI/4.0;
+			System.out.println("test");
+			x= -Math.PI/2.0;
 		}
 		else if(e.getSource().equals(rotationG)) {
-			y= Math.PI/4.0;
+			y= Math.PI/2.0;
 		}
 		else {
-			y= -Math.PI/4.0;
+			y= -Math.PI/2.0;
 		}
 
 		Face ftmp;
@@ -312,8 +314,10 @@ public class ControllerIHM  implements Observer, Runnable  {
 		if(!affichageSegment)
 			gc.setFill(Color.BLACK);
 		int ombre=300;
+		Face max = Collections.max(faces, new FaceComparator());
+		System.out.println(max.getOp1().getY());
 		for (Face f : faces) {
-			if(testOmbre(f.getOp1().getY()+y,650)) {
+			if(testOmbre(max.getOp1().getY()+y,800)) {
 				gc.strokePolygon(new double[] {f.getOp1().getX()+x+this.perspective(f.getOp1().getX(), x, f.getOp1().getZ()),
 						f.getOp2().getX()+x+this.perspective(f.getOp2().getX(), x, f.getOp2().getZ()),
 						f.getOp3().getX()+x+this.perspective(f.getOp3().getX(), x, f.getOp3().getZ())},
@@ -388,7 +392,7 @@ public class ControllerIHM  implements Observer, Runnable  {
 	
 	public void rotation() {
 		ArrayList<Face> polygon= m.getFaces();
-		double x= Math.PI/4.0;
+		double x= Math.PI/2.0;
 		double y=0.0;
 		double z=0.0;
 		Face ftmp;
@@ -450,6 +454,15 @@ public class ControllerIHM  implements Observer, Runnable  {
 	public void update(Observable arg0, Object arg1) {
 		ArrayList<Face> arg2 = (ArrayList<Face>)arg1;
 		afficheCanvas(arg2);
+	}
+	
+	private class FaceComparator implements Comparator<Face>{
+
+		@Override
+		public int compare(Face o1, Face o2) {
+			return (int) (o1.getOp1().getY()-o2.getOp1().getY());
+		}
+		
 	}
 
 
