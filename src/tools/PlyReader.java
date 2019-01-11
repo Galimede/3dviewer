@@ -23,10 +23,6 @@ public class PlyReader {
 	private int plusADroite=-1;
 	private int plusEnHaut=-1;
 	private int plusEnBas=-1;
-	private double centreX;
-	private double centreY;
-	private double diffX;
-	private double diffY;
 
 	/**
 	 * Renvoie la liste des points contenu dans le fichier .ply
@@ -118,20 +114,12 @@ public class PlyReader {
 						
 					}else {
 						if(!zoomer) {
-							while(points.get(plusADroite).getX()-points.get(plusAGauche).getX()<693&&points.get(plusEnHaut).getY()-points.get(plusEnBas).getY()<500) {
+							while(points.get(plusADroite).getX()-points.get(plusAGauche).getX()<650&&points.get(plusEnHaut).getY()-points.get(plusEnBas).getY()<450) {
 							points=Fonctions.homothetie(points,1.2);
 							}
 							zoomer=true;
-							while(points.get(plusADroite).getX()-points.get(plusAGauche).getX()>693||points.get(plusEnHaut).getY()-points.get(plusEnBas).getY()>500) {
+							while(points.get(plusADroite).getX()-points.get(plusAGauche).getX()>650||points.get(plusEnHaut).getY()-points.get(plusEnBas).getY()>450) {
 								points=Fonctions.homothetie(points,0.83);
-							}
-							diffX=points.get(plusADroite).getX()-points.get(plusAGauche).getX();
-							diffY=points.get(plusEnHaut).getY()-points.get(plusEnBas).getY();
-							for(Point p : points) {
-								centreX=693-(diffX/2);
-								centreY=500-(diffY/2);
-								points.get(points.indexOf(p)).setX(p.getX()+centreX);
-								points.get(points.indexOf(p)).setY(p.getY()+centreY);
 							}
 						}
 						tmp=getPointFace(actu);
@@ -185,35 +173,4 @@ public class PlyReader {
 		}
 		return Integer.parseInt(res);
 	}
-
-	/**
-	 * @return the centreX
-	 */
-	public double  getCentreX() {
-		return centreX;
-	}
-
-	/**
-	 * @param centreX the centreX to set
-	 */
-	
-	public void setCentreX(double rapport) {
-		diffX=rapport*diffX;
-		centreX=500-(2*diffX);
-	}
-	/**
-	 * @return the centreY
-	 */
-	public double getCentreY() {
-		return centreY;
-	}
-
-	/**
-	 * @param centreY the centreY to set
-	 */
-	public void setCentreY(double rapport) {
-		diffY=rapport*diffY;
-		centreY=500-(2*diffY);
-	}
-	
 }
