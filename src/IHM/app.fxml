@@ -14,10 +14,10 @@
 <?import javafx.scene.text.Font?>
 
 
-<SplitPane dividerPositions="0.823394495412844" prefHeight="1025.0" prefWidth="1928.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IHM.ControllerIHM">
+<SplitPane dividerPositions="0.823394495412844" prefHeight="1025.0" prefWidth="1929.0" stylesheets="@../../ressources/styles/styles.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IHM.ControllerIHM">
    <items>
       <Canvas fx:id="canvas" height="1023.0" width="1433.0" SplitPane.resizableWithParent="false" />
-      <VBox alignment="CENTER" style="-fx-background-color: #2C2F33;" SplitPane.resizableWithParent="false">
+      <VBox alignment="CENTER" prefHeight="1023.0" prefWidth="66.0" style="-fx-background-color: #2C2F33;" SplitPane.resizableWithParent="false">
          <children>
             <Label text="Rotation" textFill="WHITE">
                <font>
@@ -180,7 +180,7 @@
                   <Insets top="5.0" />
                </VBox.margin>
                <font>
-                  <Font size="20.0" />
+                  <Font size="15.0" />
                </font>
             </CheckBox>
             <Button fx:id="ouvrir" alignment="CENTER" mnemonicParsing="false" onAction="#openModel" text="Ouvrir">
@@ -190,7 +190,7 @@
             </Button>
             <Label text="Dernier fichier  : " textFill="WHITE">
                <font>
-                  <Font size="20.0" />
+                  <Font size="15.0" />
                </font>
             </Label>
             <Button fx:id="fichier" mnemonicParsing="false" onAction="#openLastModel" textFill="WHITE">
