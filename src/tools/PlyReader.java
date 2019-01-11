@@ -121,7 +121,7 @@ public class PlyReader {
 							while(points.get(plusADroite).getX()-points.get(plusAGauche).getX()>650||points.get(plusEnHaut).getY()-points.get(plusEnBas).getY()>450) {
 								points=Fonctions.homothetie(points,0.83);
 							}
-							
+							 
 							double vecteurToOrigine[]=new double [3];
 							vecteurToOrigine[2]=0;
 							vecteurToOrigine[0]=(points.get(plusAGauche).getX()+points.get(plusADroite).getX())/2;
