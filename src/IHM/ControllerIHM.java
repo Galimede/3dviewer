@@ -26,7 +26,7 @@ import tools.Fonctions;
 import tools.PlyReader;
 /**
  * 
- * @author Mathieu DEGAND - 11/02/2018
+ * @author Mathieu DEGAND Guillaume DUBOIS - 11/02/2018
  * Cette classe contr�le l'application FXML et ses diff�rents composants
  */
 public class ControllerIHM  implements Observer, Runnable  {
