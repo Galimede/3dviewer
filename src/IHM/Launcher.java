@@ -10,7 +10,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
- * 
  * @author mathieu DEGAND - 11/02/2018
  * Classe chargeant le FXML de l'application et lancant l'application
  */
