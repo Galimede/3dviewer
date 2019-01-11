@@ -42,16 +42,18 @@ Puis sur linux/Windows ouvrez un terminal et placez vous dans la racine du proje
 
 ### Livrable2
 
-- [ ] Diagramme UML du projet
-- [ ] Implémenter une rotation automatique
-- [ ] Créer un Affichage Avancé
-- [ ] Faire le rapport final du projet
-- [ ] Créer la vidéo de présentation 
-- [ ] Implémenter un système d'ombre portée dans le mode avancé
-- [ ] Régler la rotation 
-- [ ] Etoffer et rendre plus clair et lisible la doc
-- [ ] Modifier et produire d'autres tests 
-- [ ] Permettre différents affichages du modèle (Dégaut, Faces ou segments uniquement)
+- [x] Diagramme UML du projet
+- [x] Implémenter une rotation automatique
+- [ ] ~~Créer un Affichage Avancé~~
+- [x] Faire le rapport final du projet
+- [x] Créer la vidéo de présentation 
+- [x] Implémenter un système d'ombre portée ~~dans le mode avancé~~
+- [x] Régler la rotation 
+- [x] Etoffer et rendre plus clair et lisible la doc
+- [x] Modifier et produire d'autres tests 
+- [x] Permettre différents affichages du modèle (Défaut, Faces ou segments uniquement)
+- [x] Generer site javadoc
+- [x] centrer objet
 
 
 ## Auteurs
