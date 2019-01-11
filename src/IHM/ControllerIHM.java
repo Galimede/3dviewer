@@ -313,7 +313,7 @@ public class ControllerIHM  implements Observer, Runnable  {
 		double y=canvas.getHeight()/2;
 		if(!affichageSegment)
 			gc.setFill(Color.BLACK);
-		int ombre=300;
+		int ombre=400;
 		Face max = Collections.max(faces, new FaceComparator());
 		System.out.println(max.getOp1().getY());
 		for (Face f : faces) {
