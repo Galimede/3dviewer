@@ -470,9 +470,7 @@ public class ControllerIHM  implements Observer, Runnable  {
 		m.setFaces(polygon);
 	}
 	
-	public void ouvreModeAvance() {
-		
-	 }
+
 	
 	/**
 	 * methode du thread de la rotation automatique
