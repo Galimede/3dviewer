@@ -18,7 +18,7 @@ Dans la seconde version le logiciel peut aussi :
 ## Installation
 
 Tout d'abord clonez le projet par : 
-> git clone https://git-iut.univ-lille1.fr/degandm/ProjetMode2018-M3.git
+> git clone https://github.com/Galimede/3dviewer.git
 
 Ou téléchargez et decompresser le projet en zip.
 
